@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./app/navigation/Nav";
-import NotFound from "./app/Fallback/NotFound";
-import Loading from "./app/Fallback/Loading";
+import NotFound from "./app/fallback/NotFound";
+import Loading from "./app/fallback/Loading";
 
 const Home = lazy(() => import("./app/pages/Home"));
 const About = lazy(() => import("./app/pages/About"));
