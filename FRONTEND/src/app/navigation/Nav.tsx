@@ -1,10 +1,31 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
+import MbNav from './mb/MbNav'
+import DtNav from './dt/DtNav'
 
 type Props = {}
 
-const Nav = (props: Props) => {
+const Nav = () => {
+  const[vp,setVp] = useState<string>("")
+
+  useEffect(()=> {
+
+      const adjVp=()=> {
+        setVp(window.innerWidth <500 ? "small" : "wide")
+      }  
+
+      window.addEventListener("resize",adjVp);
+      
+      adjVp();  
+
+      return ()=> window.removeEventListener("resize",adjVp)
+    },[])
+
   return (
-    <div>Nav</div>
+    <>
+    {
+      vp === "small" ? <MbNav/> : <DtNav/>
+    }
+    </>
   )
 }
 
