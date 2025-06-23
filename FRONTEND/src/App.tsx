@@ -1,8 +1,8 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./app/navigation/Nav";
-import NotFound from "./app/Fallback/NotFound";
-import Loading from "./app/Fallback/Loading";
+import NotFound from "./app/fallback/NotFound";
+import Loading from "./app/fallback/Loading";
 
 const Home = lazy(() => import("./app/pages/Home"));
 const About = lazy(() => import("./app/pages/About"));
@@ -36,12 +36,20 @@ const Students = lazy(() => import("./app/tutorDash/Students"));
 const TSettings = lazy(() => import("./app/tutorDash/TSettings"));
 const Earnings = lazy(() => import("./app/tutorDash/Earnings"));
 
+import { authContext } from "./state/authState";
 
 const App = () => {
+  type User = {
+    username : string;
+    pfp: string;
+}
+
+  const[user,setUser] = useState< User | null>({username:"me", pfp: "blahblh"})
   return (
+    <authContext.Provider value={{user,setUser}}>
     <Router>
       {/* Navigation */}
-      <Nav />
+      <Nav/>
 
       <Suspense fallback={<Loading/>}>
         <Routes>
@@ -98,6 +106,7 @@ const App = () => {
         </Routes>
       </Suspense>
     </Router>
+    </authContext.Provider>
   );
 };
 
