@@ -2,8 +2,6 @@ import {useEffect, useState} from 'react'
 import MbNav from './mb/MbNav'
 import DtNav from './dt/DtNav'
 
-type Props = {}
-
 const Nav = () => {
   const[vp,setVp] = useState<string>("")
 
