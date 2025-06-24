@@ -1,1 +1,9 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Figtree";
+    src: url(./assets/fonts/Figtree/Figtree-VariableFont_wght.ttf);
+}
+* {
+    font-family: "Figtree";
+}
