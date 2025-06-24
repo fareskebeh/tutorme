@@ -33,7 +33,7 @@ const DtNav = () => {
           user? 
           (
             <Link className="contents" to="/dashboard">
-              <img className="w-10 rounded-full" src={blankPfp} alt="" />
+              <img className="w-10 rounded-full shadow-sm" src={blankPfp} alt="" />
             </Link>
           )
           :

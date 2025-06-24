@@ -29,7 +29,7 @@ const DtDropdown = ({label,dropContent}: Props) => {
   return (
     <div ref={menuRef} onClick={()=>setOpen(!open)} className={`*:cursor-pointer p-2 rounded-lg active:bg-neutral-400/50 transition duration-300 relative items-center flex gap-2`}>
       <p>{label==="tutors" ? "Find a Tutor" : "Find Tutor jobs" }</p>
-      <button className={`transition duration-300 ${open? "rotate-180" : ""}`}>
+      <button className={`transition duration-300 ${open? "-rotate-180" : ""}`}>
         <HiChevronDown/>
       </button>
       
