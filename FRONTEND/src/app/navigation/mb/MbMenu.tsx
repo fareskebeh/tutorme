@@ -48,7 +48,9 @@ const MbMenu = () => {
 
         {/*Links*/}
         <div className="">
-          {dropdowns.map((drop, index) => (
+          {
+          dropdowns.map((drop, index) => (
+
             <React.Fragment key={index}>
               <MbDropdown
                 setBar={setBar}
@@ -56,11 +58,15 @@ const MbMenu = () => {
                 label={drop}
                 dropContent={dropContent}
               />
-              {index !== dropdowns.length - 1 && (
-                <hr className="border-[#a5a5a58c]" />
-              )}
             </React.Fragment>
+
           ))}
+          
+          <div className="*:p-2 *:transition duration-300 flex flex-col *:rounded-md">
+            <Link onClick={()=> setBar(false)} className={`${location.pathname==="/about" && "bg-emerald-500 text-white"}`} to="/about">About</Link>
+            <Link onClick={()=> setBar(false)} className={`${location.pathname==="/faq" && "bg-emerald-500 text-white"}`} to="/faq">FAQ</Link>
+          </div>
+
         </div>
 
         {/*Theme + Auth (currently postponed functionality)s*/}
