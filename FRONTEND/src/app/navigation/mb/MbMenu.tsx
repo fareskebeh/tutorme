@@ -36,7 +36,7 @@ const MbMenu = () => {
       <div
         className={`${
           bar ? "" : "translate-x-full"
-        } w-50 p-4 shadow-lg flex flex-col justify-between transition duration-200 z-90 fixed top-0 bg-white right-0 bottom-0`}
+        } w-[60%] p-4 shadow-lg flex flex-col justify-between transition duration-200 z-90 fixed top-0 bg-white right-0 bottom-0`}
       >
         {/*Header*/}
         <div className="flex justify-between">
@@ -48,7 +48,9 @@ const MbMenu = () => {
 
         {/*Links*/}
         <div className="">
-          {dropdowns.map((drop, index) => (
+          {
+          dropdowns.map((drop, index) => (
+
             <React.Fragment key={index}>
               <MbDropdown
                 setBar={setBar}
@@ -56,19 +58,25 @@ const MbMenu = () => {
                 label={drop}
                 dropContent={dropContent}
               />
-              {index !== dropdowns.length - 1 && (
-                <hr className="border-[#a5a5a58c]" />
-              )}
             </React.Fragment>
+
           ))}
+          
+          <div className="*:p-2 text-lg *:transition duration-300 flex flex-col *:rounded-md">
+            <Link onClick={()=> setBar(false)} className={`${location.pathname==="/about" && "bg-emerald-500 text-white"}`} to="/about">About</Link>
+            <Link onClick={()=> setBar(false)} className={`${location.pathname==="/faq" && "bg-emerald-500 text-white"}`} to="/faq">FAQ</Link>
+          </div>
+
         </div>
 
         {/*Theme + Auth (currently postponed functionality)s*/}
         <div>
           <div className="flex py-4 gap-2">
+            <div className="flex gap-2 items-center">
             <HiOutlineMoon size={25} />
             <p>Dark Theme</p>
-            <div className="relative ">
+            </div>
+            <div className="relative ml-10">
               <input
                 className="hidden peer"
                 type="checkbox"
