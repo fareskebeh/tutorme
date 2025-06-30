@@ -30,7 +30,7 @@ const MbDropdown = ({ label, dropContent, setBar }: Props) => {
     <div
       ref={menuRef}
       onClick={() => setOpen(!open)}
-      className={` p-2 rounded-lg active:bg-neutral-400/50 transition duration-300 relative items-center flex justify-between`}
+      className={` p-2 rounded-lg active:bg-neutral-200/50 transition duration-300 relative items-center text-lg flex justify-between`}
     >
       <p>{label === "tutors" ? "Find a Tutor" : label==="jobs" ? "Find Tutor jobs" : ""}</p>
 
