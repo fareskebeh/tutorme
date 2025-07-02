@@ -4,7 +4,7 @@ import tutorme from "../../../assets/tutorme.png"
 
 const MbNav = () => {
   return (
-    <div className="py-3 px-4 flex items-center justify-between fixed top-0 left-0 right-0">
+    <div className="py-3 px-4 flex items-center justify-between fixed z-999 top-0 left-0 right-0">
     
       <Link to="/home">
         <img className="w-12" src={tutorme} alt="" />

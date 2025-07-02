@@ -4,6 +4,15 @@
     font-family: "Figtree";
     src: url(./assets/fonts/Figtree/Figtree-VariableFont_wght.ttf);
 }
+
 * {
     font-family: "Figtree";
 }
+
+@theme {
+    --color-navy-700: oklch(37.23% 0.043 259.34);
+    --color-navy-800: oklch(29.33% 0.033 259.64);
+    --color-navy-900: oklch(21.13% 0.023 259.93);
+    --shadow-blue: 0 0 5px 5px #3b82f620;
+}
+
