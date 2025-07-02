@@ -8,7 +8,7 @@ const Nav = () => {
   useEffect(()=> {
 
       const adjVp=()=> {
-        setVp(window.innerWidth <500 ? "small" : "wide")
+        setVp(window.innerWidth <800 ? "small" : "wide")
       }  
 
       window.addEventListener("resize",adjVp);
