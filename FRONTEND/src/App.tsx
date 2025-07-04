@@ -44,7 +44,7 @@ const App = () => {
     pfp: string;
 }
 
-  const[user,setUser] = useState< User | null>({username:"me", pfp: "blahblh"})
+  const[user,setUser] = useState< User | null>(null)
   return (
     <authContext.Provider value={{user,setUser}}>
     <Router>
