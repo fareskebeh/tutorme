@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { faqs } from './faq'
+import { faqs } from './faqData'
 import { HiChevronRight } from 'react-icons/hi'
 
 

@@ -55,3 +55,5 @@ export const faqs: FAQ[] = [
       "You can reach our support team by emailing support@tutorme.com, using the live chat feature on our website, or submitting a support ticket through your account dashboard.",
   },
 ];
+
+export default faqs

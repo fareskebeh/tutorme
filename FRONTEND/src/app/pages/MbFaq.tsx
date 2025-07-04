@@ -1,5 +1,5 @@
 import {Fragment} from "react"
-import { faqs } from "./faq"
+import { faqs } from "./faqData"
 import Expandable from "./Expandable"
 
 const MbFaq = () => {
@@ -10,7 +10,7 @@ const MbFaq = () => {
           <Fragment key={index}>
             <Expandable question={faq.q} answer={faq.a}/>
           {
-            index < faqs.length && index!==faqs.length-1 ? <hr/> : ""
+            index!==faqs.length-1 ? <hr/> : ""
           }
           </Fragment>
         ))
