@@ -4,7 +4,7 @@ import { HiChevronRight } from 'react-icons/hi'
 
 
 const DtFaq = () => {
-  const[curr,setCurr] = useState(1)
+  const[curr,setCurr] = useState(0)
   return (
     <div className='flex max-h-full overflow-hidden gap-4 *:rounded-3xl *:border *:border-neutral-400/30 *:shadow-md'>
       <div className='w-[30%] flex flex-col p-4 overflow-hidden py-4'>
