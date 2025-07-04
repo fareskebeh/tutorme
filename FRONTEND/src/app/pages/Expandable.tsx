@@ -11,7 +11,7 @@ const Expandable = (props: Props) => {
     const[open,setOpen]= useState(false)
   return (
     <div  className="flex flex-col gap-2">
-      <div onClick={()=> setOpen(!open)} className="flex text-2xl justify-between items-center p-2">
+      <div onClick={()=> setOpen(!open)} className={`${open ? "bg-emerald-500 text-white" : ""} transition duration-200 flex rounded-lg text-2xl justify-between items-center p-4`}>
         <p className="font-bold w-[90%]">{props.question}</p>
         <HiChevronRight  className={` transition duration-200 ${
             open ? "rotate-90" : ""
