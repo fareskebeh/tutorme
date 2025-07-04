@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { faqs } from './faq'
 import { HiChevronRight } from 'react-icons/hi'
 
-type Props = {}
 
 const DtFaq = () => {
   const[curr,setCurr] = useState(1)
