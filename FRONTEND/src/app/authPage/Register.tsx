@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { HiOutlineEye, HiOutlineEyeOff, HiExclamation } from "react-icons/hi";
 import tutorme from "../../assets/tutorme.png";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Credentials = {
   firstName: string;
@@ -20,10 +21,34 @@ const Register = () => {
     firstPassword: "",
     secondPassword: "",
   });
+  const [msg, setMsg] = useState<null | string>(null);
+
+  const register = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { firstName, lastName, email, firstPassword, secondPassword } =
+      credentials;
+    if (
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !email.trim() ||
+      !firstPassword ||
+      !secondPassword
+    ) {
+      setMsg("Please fill out all fields.");
+      return;
+    }
+
+    if (firstPassword !== secondPassword) {
+      setMsg("Passwords do not match.");
+      return;
+    }
+
+    //placeholder in case of success
+  };
 
   return (
     <div className="pt-20 h-[100dvh] flex items-center gap-20 *:flex-1 justify-center px-8 sm:px-20 py-4">
-      <form className="flex flex-col gap-2">
+      <form onSubmit={register} className="relative flex flex-col gap-2">
         <p className="text-3xl font-black">Create a Tutorme account</p>
         <p className="text-xl font-bold text-neutral-400">
           Already a user?{" "}
@@ -109,11 +134,25 @@ const Register = () => {
           </div>
         </div>
         <button
-          className={`p-4 shadow-md text-2xl font-bold rounded-xl text-white bg-emerald-400 active:scale-98`}
-          type="button"
+          className={`p-4 cursor-pointer shadow-md text-2xl font-bold rounded-xl text-white bg-emerald-400 active:opacity-80 transition duration-200`}
+          type="submit"
         >
           Create my account
         </button>
+        <AnimatePresence>
+          {msg ? (
+            <motion.p
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-red-500 text-l flex gap-2 items-center absolute left-0 -bottom-10"
+            >
+              <HiExclamation /> {msg}
+            </motion.p>
+          ) : (
+            ""
+          )}
+        </AnimatePresence>
       </form>
       <div className="hidden justify-center items-center sm:flex">
         <div className="flex flex-col">
