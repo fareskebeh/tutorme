@@ -13,6 +13,7 @@ type Credentials = {
 };
 
 const Register = () => {
+  const[loading,setLoading] = useState(false)
   const [pwVis, setPwVis] = useState(false);
   const [credentials, setCredentials] = useState<Credentials>({
     firstName: "",
@@ -25,6 +26,8 @@ const Register = () => {
 
   const register = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setMsg(null)
+    setLoading(true)
     const { firstName, lastName, email, firstPassword, secondPassword } =
       credentials;
     if (
@@ -35,14 +38,17 @@ const Register = () => {
       !secondPassword
     ) {
       setMsg("Please fill out all fields.");
+      setLoading(false)
       return;
     }
 
     if (firstPassword !== secondPassword) {
       setMsg("Passwords do not match.");
+      setLoading(false)
       return;
     }
 
+    setMsg(null)
     //placeholder in case of success
   };
 
@@ -133,11 +139,12 @@ const Register = () => {
             />
           </div>
         </div>
-        <button
-          className={`p-4 cursor-pointer shadow-md text-2xl font-bold rounded-xl text-white bg-emerald-400 active:opacity-80 transition duration-200`}
+        <button 
+          disabled={loading}
+          className={`p-4 ${loading ? "bg-emerald-700" : "bg-emerald-400"} cursor-pointer flex justify-center items-center shadow-md text-2xl font-bold rounded-xl text-white active:opacity-80 transition duration-200`}
           type="submit"
         >
-          Create my account
+          {loading ? <div className="loader my-2"></div> : "Create my account"}
         </button>
         <AnimatePresence>
           {msg ? (
