@@ -58,7 +58,7 @@ const Register = () => {
         <p className="text-3xl font-black">Create a Tutorme account</p>
         <p className="text-xl font-bold text-neutral-400">
           Already a user?{" "}
-          <Link className="text-emerald-500" to="/register">
+          <Link className="text-emerald-500" to="/login">
             Log In
           </Link>{" "}
           here
