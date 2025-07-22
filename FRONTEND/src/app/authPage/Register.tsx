@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineEye, HiOutlineEyeOff, HiExclamation } from "react-icons/hi";
 import tutorme from "../../assets/tutorme.png";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,6 +23,7 @@ const Register = () => {
     secondPassword: "",
   });
   const [msg, setMsg] = useState<null | string>(null);
+  const navigate = useNavigate();
 
   const register = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,6 +51,8 @@ const Register = () => {
 
     setMsg(null)
     //placeholder in case of success
+
+    navigate("/verify")
   };
 
   return (
@@ -64,27 +67,9 @@ const Register = () => {
           here
         </p>
 
-        <div className="flex gap-2 *:flex-1">
-          <input
-            value={credentials.firstName}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setCredentials({ ...credentials, firstName: e.target.value })
-            }
-            className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border rounded-xl border-b-2 border-neutral-300 invalid:border-red-500 invalid:caret-red-500 invalid:bg-red-100 invalid:text-red-700 transition duration-200"
-            type="text"
-            placeholder="First Name"
-            name=""
-          />
-          <input
-            value={credentials.lastName}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setCredentials({ ...credentials, lastName: e.target.value })
-            }
-            className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border rounded-xl border-b-2 border-neutral-300 invalid:border-red-500 invalid:caret-red-500 invalid:bg-red-100 invalid:text-red-700 transition duration-200"
-            type="text"
-            placeholder="Last Name"
-            name=""
-          />
+        <div className="flex *:flex-1 *:p-3 *:text-2xl *:bg-neutral-100 *:caret-emerald-500 *:outline-none *:border *:w-full *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2" >
+          <input placeholder="First Name" type="text" value={credentials.firstName} onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setCredentials({...credentials, firstName: e.target.value})}/>
+          <input placeholder="Last Name" type="text"  value={credentials.lastName} onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setCredentials({...credentials, lastName: e.target.value})}/>
         </div>
 
         <input
