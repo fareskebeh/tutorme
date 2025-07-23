@@ -80,7 +80,7 @@ const App = () => {
           <Route path="/login" element={<Login/>}/>
           <Route path="/forgot-password" element={<ForgotPw/>}/>
           <Route path="/verify" element={<Verify/>}/>
-          <Route path="/reset-password/:token" element={<PwReset/>}/>
+          <Route path="/reset-password" element={<PwReset/>}/>
           
           {/* student dashboard */}
           <Route path="/dashboard" element={<Dashboard/>}>
