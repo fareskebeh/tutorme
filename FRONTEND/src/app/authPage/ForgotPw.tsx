@@ -62,7 +62,7 @@ const ForgotPw = () => {
           password
         </p>
         <div className="flex *:font-bold *:text-center disabled:text-neutral-400 *:p-2 *:text-4xl *:bg-neutral-100 *:focus:border-emerald-400 *:transition duration-200 *:caret-emerald-500 *:outline-none *:border *:w-[25%] *:sm:w-[5%] *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2">
-          {code?.map((c, index: number) => (
+          {code?.map((_, index: number) => (
             <input
               inputMode="numeric"
               disabled={verifying}
