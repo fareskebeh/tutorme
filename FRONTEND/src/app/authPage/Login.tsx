@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineEye, HiOutlineEyeOff, HiExclamation } from "react-icons/hi";
 import tutorme from "../../assets/tutorme.png";
 import {motion, AnimatePresence} from "framer-motion"
@@ -9,10 +9,16 @@ type Credentials = {
   password: string;
 };
 
-const Login = () => {
+type Props = {
+  setGuest: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Login = (props: Props) => {
+  const navigate = useNavigate()
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [pwVis, setPwVis] = useState(false);
+  const guestRef = useRef<HTMLInputElement>(null)
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
     password: "",
@@ -32,6 +38,15 @@ const Login = () => {
     //placeholder in case of success
   };
 
+  const forgotPass=()=> {
+    if(!guestRef.current?.validity.valid || guestRef.current?.value === "") {
+      setMsg("Enter a valid email")
+      return;
+    }
+    props.setGuest(guestRef.current?.value)
+    navigate("/forgot-password")
+  }
+
   return (
     <div className="pt-20 h-[100dvh] flex items-center gap-20 *:flex-1 justify-center px-8 sm:px-20 py-4">
       <form onSubmit={login} className="flex relative flex-col gap-2">
@@ -44,6 +59,7 @@ const Login = () => {
           here
         </p>
         <input
+          ref={guestRef}
           value={credentials.email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setCredentials({ ...credentials, email: e.target.value })
@@ -91,9 +107,9 @@ const Login = () => {
         >
           {loading ? <div className="loader my-2"></div> : "Log In"}
         </button>
-        <Link className="text-lg text-neutral-500" to="/forgot-password">
+        <p onClick={forgotPass} className="text-lg cursor-pointer text-neutral-500">
           Forgot Password?
-        </Link>
+        </p>
         <AnimatePresence>
           {msg ? (
             <motion.p

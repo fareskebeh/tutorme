@@ -2,7 +2,11 @@ import { useRef, useState } from "react";
 import { HiExclamation } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-const ForgotPw = () => {
+type Props = {
+  guest: string;
+}
+
+const ForgotPw = (props: Props) => {
   const correct='11223'
   const navigate = useNavigate()
   const [code, setCode] = useState<string[]>(["", "", "", "", ""]);
@@ -58,7 +62,7 @@ const ForgotPw = () => {
           Enter the code sent to your email
         </p>
         <p className="text-xl sm:text-2xl">
-          We have sent a verification code, enter it below to reset your
+          We have sent a verification code to <strong>{props.guest}</strong> <br/>Enter it below to reset your
           password
         </p>
         <div className="flex *:font-bold *:text-center disabled:text-neutral-400 *:p-2 *:text-4xl *:bg-neutral-100 *:focus:border-emerald-400 *:transition duration-200 *:caret-emerald-500 *:outline-none *:border *:w-[25%] *:sm:w-[5%] *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2">

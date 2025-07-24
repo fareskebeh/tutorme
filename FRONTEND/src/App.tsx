@@ -45,7 +45,7 @@ const App = () => {
     username : string;
     pfp: string;
 }
-
+  const[guest, setGuest] = useState<string>("")
   const[user,setUser] = useState< User | null>(null)
   return (
     <authContext.Provider value={{user,setUser}}>
@@ -79,8 +79,8 @@ const App = () => {
 
           {/* auth */}
           <Route path="/register" element={<Public><Register/></Public>}/>
-          <Route path="/login" element={<Public><Login/></Public>}/>
-          <Route path="/forgot-password" element={<Public><ForgotPw/></Public>}/>
+          <Route path="/login" element={<Public><Login setGuest={setGuest}/></Public>}/>
+          <Route path="/forgot-password" element={guest==="" ? <Navigate to="*" replace/> : (<Public><ForgotPw guest={guest}/></Public>)}/>
           <Route path="/verify" element={<Verify/>}/>
           <Route path="/reset-password" element={<PwReset/>}/>
           
