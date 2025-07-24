@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Nav from "./app/navigation/Nav";
 import NotFound from "./app/fallback/NotFound";
 import Loading from "./app/fallback/Loading";
+import Public from "./app/authPage/routes/Public";
+import Protected from "./app/authPage/routes/Protected";
 
 const Home = lazy(() => import("./app/pages/Home"));
 const About = lazy(() => import("./app/pages/About"));
@@ -76,29 +78,29 @@ const App = () => {
           </Route>
 
           {/* auth */}
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/forgot-password" element={<ForgotPw/>}/>
+          <Route path="/register" element={<Public><Register/></Public>}/>
+          <Route path="/login" element={<Public><Login/></Public>}/>
+          <Route path="/forgot-password" element={<Public><ForgotPw/></Public>}/>
           <Route path="/verify" element={<Verify/>}/>
           <Route path="/reset-password" element={<PwReset/>}/>
           
           {/* student dashboard */}
-          <Route path="/dashboard" element={<Dashboard/>}>
-            <Route path="requests" element={<Requests/>} />
-            <Route path="hire-history" element={<HireHistory/>} />
-            <Route path="favorites" element={<Favorites/>} />
-            <Route path="messages" element={<Messages/>} />
-            <Route path="settings" element={<Settings/>} />
+          <Route path="/dashboard" element={<Protected><Dashboard/></Protected>}>
+            <Route path="requests" element={<Protected><Requests/></Protected>} />
+            <Route path="hire-history" element={<Protected><HireHistory/></Protected>} />
+            <Route path="favorites" element={<Protected><Favorites/></Protected>} />
+            <Route path="messages" element={<Protected><Messages/></Protected>} />
+            <Route path="settings" element={<Protected> <Settings/></Protected>} />
           </Route>
           
           {/* tutor dashboard */}
-          <Route path="/tutor-panel" element={<Panel/>}>
-            <Route path="profile" element={<Profile/>} />
-            <Route path="applications" element={<Applications/>} />
-            <Route path="my-students" element={<Students/>} />
-            <Route path="messages" element={<Messages/>} />
-            <Route path="earnings" element={<Earnings/>} />
-            <Route path="settings" element={<TSettings/>} />
+          <Route path="/tutor-panel" element={  <Protected><Panel       /></Protected>}>
+            <Route path="profile" element={     <Protected><Profile     /></Protected>} />
+            <Route path="applications" element={<Protected><Applications/></Protected>} />
+            <Route path="my-students" element={ <Protected><Students    /></Protected>} />
+            <Route path="messages" element={    <Protected><Messages    /></Protected>} />
+            <Route path="earnings" element={    <Protected><Earnings    /></Protected>} />
+            <Route path="settings" element={    <Protected><TSettings   /></Protected>} />
           </Route>
           
           {/* catch-all */}
