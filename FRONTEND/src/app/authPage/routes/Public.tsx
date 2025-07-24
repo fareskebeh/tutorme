@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 const Public = ({children} : {children: React.ReactNode})=> {
     const {user} = useContext(authContext)! 
-    return user ? <Navigate to="/dashboard"/> : children
+    return user ? <Navigate to="*" replace/> : children
 }
 
 

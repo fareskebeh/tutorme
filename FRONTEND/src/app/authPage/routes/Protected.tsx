@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 const Protected = ({children}: {children: React.ReactNode})=> {
     const {user} = useContext(authContext) !
-    return user ? children : <Navigate to="/login"/>
+    return user ? children : <Navigate to="*" replace/>
 }
 
 export default Protected
