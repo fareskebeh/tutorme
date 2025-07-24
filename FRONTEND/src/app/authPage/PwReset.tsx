@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiExclamation, HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 type Password = {
   first: string;
@@ -9,6 +9,8 @@ type Password = {
 };
 
 const PwReset = () => {
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get("token")
   const navigate = useNavigate();
   const oldPw = "12345678"; // placeholder
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,6 +50,10 @@ const PwReset = () => {
 
     navigate("/login");
   };
+
+  if(!token) {
+    return <Navigate to="/login"/>
+  }
 
   return (
     <div className="pt-20 h-[100dvh] flex gap-8 flex-col sm:flex-row items-center justify-center px-8">
