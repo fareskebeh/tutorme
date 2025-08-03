@@ -10,7 +10,6 @@ const Home = lazy(() => import("./app/pages/Home"));
 const About = lazy(() => import("./app/pages/About"));
 const Faq = lazy(() => import("./app/pages/Faq"));
 
-const Tutors = lazy(() => import("./app/tutors/Tutors"));
 const TutorPreview = lazy(() => import("./app/tutors/TutorPreview"));
 const Subjects = lazy(() => import("./app/tutors/Subjects"));
 const Request = lazy(() => import("./app/tutors/Request"));
