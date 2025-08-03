@@ -39,6 +39,8 @@ const TSettings = lazy(() => import("./app/tutorDash/TSettings"));
 const Earnings = lazy(() => import("./app/tutorDash/Earnings"));
 
 import { authContext } from "./state/authState";
+import TutorsList from "./app/tutors/TutorsList";
+import TutorsLayout from "./app/tutors/TutorsLayout";
 
 const App = () => {
   type User = {
@@ -63,11 +65,12 @@ const App = () => {
           <Route path="/faq" element={<Faq/>}/>
           
           {/* Tutors */}
-          <Route path="/tutors" element={<Tutors/>}>
-            <Route path=":id" element={<TutorPreview/>}/>
-            <Route path="subject/:subject" element={<Subjects/>}/>
+          <Route path="/tutors" element={<TutorsLayout/>}>
+            <Route index element={<TutorsList/>}/>
+            <Route path="id/:id" element={<TutorPreview/>}/>
+            <Route path="subjects/:subject" element={<Subjects/>}/>
             <Route path="request" element={<Request/>}/>
-            <Route path=":method" element={<TutorFilter/>}/>
+            <Route path="filter/:method" element={<TutorFilter/>}/>
           </Route>
           
           {/*jobs */}
