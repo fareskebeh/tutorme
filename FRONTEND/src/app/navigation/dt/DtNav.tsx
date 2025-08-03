@@ -18,8 +18,8 @@ const DtNav = () => {
   return (
     <div className="py-2 bg-white px-4 flex items-center justify-between fixed top-0 left-0 right-0">
       <div className="flex *:transition duration-300 items-center gap-4">
-        <Link to="/home">
-          <img className="w-[55px]" src={tutorme} alt="" />
+        <Link className="px-4" to="/home">
+          <img className="w-[25px]" src={tutorme} alt="" />
         </Link>
 
         {dropdowns.map((drop, index) => (
