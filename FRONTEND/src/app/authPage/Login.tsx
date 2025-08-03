@@ -126,9 +126,9 @@ const Login = (props: Props) => {
           </AnimatePresence>
       </form>
       <div className="hidden justify-center items-center sm:flex">
-        <div className="flex flex-col">
-          <img src={tutorme} alt="" />
-          <p>TUTORME</p>
+        <div className="flex flex-col items-center justify-center gap-8">
+          <img src={tutorme} className="w-70" alt="" />
+          <p className="tracking-widest text-3xl text-emerald-600 font-bold">TUTORME</p>
         </div>
       </div>
     </div>

@@ -147,9 +147,9 @@ const Register = () => {
         </AnimatePresence>
       </form>
       <div className="hidden justify-center items-center sm:flex">
-        <div className="flex flex-col">
-          <img src={tutorme} alt="" />
-          <p>TUTORME</p>
+        <div className="flex flex-col items-center justify-center gap-8">
+          <img className="w-70" src={tutorme} alt="" />
+          <p className="text-3xl tracking-widest font-bold text-emerald-600">TUTORME</p>
         </div>
       </div>
     </div>
