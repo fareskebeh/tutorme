@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./app/navigation/Nav";
 import NotFound from "./app/fallback/NotFound";
@@ -46,13 +46,28 @@ const App = () => {
     username : string;
     pfp: string;
 }
+
+  const[vp,setVp] = useState<string>("")
+
+  useEffect(()=> {
+
+      const adjVp=()=> {
+        setVp(window.innerWidth <800 ? "small" : "wide")
+      }  
+
+      window.addEventListener("resize",adjVp);
+      
+      adjVp();  
+
+      return ()=> window.removeEventListener("resize",adjVp)
+    },[])
   const[guest, setGuest] = useState<string>("")
   const[user,setUser] = useState< User | null>(null)
   return (
     <authContext.Provider value={{user,setUser}}>
     <Router>
       {/* Navigation */}
-      <Nav/>
+      <Nav vp={vp}/>
 
       <Suspense fallback={<Loading/>}>
         <Routes>
@@ -64,7 +79,7 @@ const App = () => {
           <Route path="/faq" element={<Faq/>}/>
           
           {/* Tutors */}
-          <Route path="/tutors" element={<TutorsLayout/>}>
+          <Route path="/tutors" element={<TutorsLayout vp={vp}/>}>
             <Route index element={<TutorsList/>}/>
             <Route path="id/:id" element={<TutorPreview/>}/>
             <Route path="subjects/:subject" element={<Subjects/>}/>

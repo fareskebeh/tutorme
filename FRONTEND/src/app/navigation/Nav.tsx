@@ -2,26 +2,18 @@ import {useEffect, useState} from 'react'
 import MbNav from './mb/MbNav'
 import DtNav from './dt/DtNav'
 
-const Nav = () => {
-  const[vp,setVp] = useState<string>("")
+type Props = {
+  vp :string
+}
 
-  useEffect(()=> {
 
-      const adjVp=()=> {
-        setVp(window.innerWidth <800 ? "small" : "wide")
-      }  
-
-      window.addEventListener("resize",adjVp);
-      
-      adjVp();  
-
-      return ()=> window.removeEventListener("resize",adjVp)
-    },[])
+const Nav = (props: Props) => {
+  
 
   return (
     <>
     {
-      vp === "small" ? <MbNav/> : <DtNav/>
+      props.vp === "small" ? <MbNav/> : <DtNav/>
     }
     </>
   )
