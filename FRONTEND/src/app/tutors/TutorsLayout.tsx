@@ -1,11 +1,39 @@
-import React from 'react'
+import { useState } from "react";
+import Search from "./Search";
+import { Outlet } from "react-router-dom";
+import MbSearch from "./MbSearch";
+import { HiAdjustments, HiSearch } from "react-icons/hi";
+import { AnimatePresence } from "framer-motion";
 
-type Props = {}
+type Props = {
+  vp: string;
+};
 
 const TutorsLayout = (props: Props) => {
-  return (
-    <div></div>
-  )
-}
+  const[sOpen,setSOpen] = useState<boolean>(false)
 
-export default TutorsLayout
+  return (
+    <div className="pt-20">
+      <AnimatePresence>
+        {sOpen && (
+            <MbSearch setSOpen={setSOpen}/>
+        )}
+      </AnimatePresence>
+      {props.vp === "wide" ? (
+        <div className="w-full shadow-md p-4 flex justify-between items-center">
+          <div></div>
+          <Search/>
+          <HiAdjustments size={24}/>
+        </div>
+      ) : (
+        <div className="shadow-md w-full flex p-4 justify-between items-center">
+          <HiSearch onClick={()=> setSOpen(true)} size={24} />
+          <HiAdjustments size={24} />
+        </div>
+      )}
+      <Outlet/>
+    </div>
+  );
+};
+
+export default TutorsLayout;
