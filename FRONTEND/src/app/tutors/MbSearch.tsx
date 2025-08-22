@@ -18,13 +18,15 @@ const MbSearch = (props: Props) => {
   });
   return (
     <motion.div
+      onClick={()=>props.setSOpen(false)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="bg-black/20 flex items-center justify-center fixed inset-0 z-[999]"
+      className="bg-black/20 flex items-center justify-center fixed inset-0 z-[899]"
     >
       <motion.div
+        onClick={(e)=> e.stopPropagation()}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
@@ -74,7 +76,7 @@ const MbSearch = (props: Props) => {
         </div>
 
 
-        <div className="flex flex-col text-xl text-center gap-4 justify-center items-center">
+        <div className="flex flex-col text-xl text-center *:select-none gap-4 justify-center items-center">
               <HiSearch size={50}/>
               <p className="w-[70%]">Enter keywords to start searching</p>
         </div>
