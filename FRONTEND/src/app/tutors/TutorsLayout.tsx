@@ -21,7 +21,6 @@ const TutorsLayout = (props: Props) => {
       </AnimatePresence>
       {props.vp === "wide" ? (
         <div className="w-full shadow-md p-4 flex justify-between items-center">
-          <div></div>
           <Search/>
           <HiAdjustments size={24}/>
         </div>
