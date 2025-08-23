@@ -8,11 +8,16 @@ import {
   HiOutlineHeart,
   HiHeart,
 } from "react-icons/hi";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
 const TutorTile = (props: Tutor) => {
   return (
-    <motion.div initial={{opacity:0, x:-10}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}} className="flex cursor-pointer p-4 justify-between bg-white shadow-md rounded-xl">
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex cursor-pointer p-4 justify-between bg-white shadow-md rounded-xl"
+    >
       <div className="  justify-between flex flex-col gap-4 sm:gap-6 md:gap-8 ">
         <div className="flex gap-4 sm:gap-6 md:gap-8">
           <img
@@ -34,6 +39,14 @@ const TutorTile = (props: Tutor) => {
           </div>
         </div>
 
+        {props.tags && (
+          <div className="flex flex-wrap *:p-2 *:text-neutral-600 *:bg-neutral-100 gap-2 *:rounded-xl">
+            {props.tags?.map((tag, i) => (
+              <div key={i}>{tag}</div>
+            ))}
+          </div>
+        )}
+
         <div className="flex flex-col gap-1 sm:gap-2">
           <div className="flex items-center">
             {Array(5).fill(
@@ -45,14 +58,29 @@ const TutorTile = (props: Tutor) => {
               <HiStar className="text-amber-100 size-6 sm:size-7 md:size-8" />
             )}
           </div>
-          <div className="flex text-neutral-500 items-center gap-1">
+          <div className="flex flex-col sm:gap-8 sm:flex-row sm:items-center text-neutral-500 items-start gap-1">
+            <div className="flex items-center gap-1">
             <HiOutlineClock /> {props.availability}
+            </div>
+            <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 text-emerald-500">
+              {props.locationAvailability.map((l, i) => (
+                <p key={i}>{l}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
       <div className="flex-col flex items-end justify-between">
-        <button className="cursor-pointer hover:scale-105 transition duration-150 active:scale-100">{props.isFavorite ? <HiHeart className="size-6 sm:size-7 md:size-8 text-emerald-400"/> : <HiOutlineHeart className=" text-neutral-300 size-6 sm:size-7 md:size-8"/>}</button>
-        <button className="cursor-pointer p-2 text-lg rounded-xl bg-emerald-400 text-white text-nowrap">Preview</button>
+        <button className="cursor-pointer hover:scale-105 transition duration-150 active:scale-100">
+          {props.isFavorite ? (
+            <HiHeart className="size-6 sm:size-7 md:size-8 text-emerald-400" />
+          ) : (
+            <HiOutlineHeart className=" text-neutral-300 size-6 sm:size-7 md:size-8" />
+          )}
+        </button>
+        <button className="cursor-pointer p-2 text-lg rounded-xl bg-emerald-400 text-white text-nowrap">
+          Preview
+        </button>
       </div>
     </motion.div>
   );
