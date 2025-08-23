@@ -9,6 +9,7 @@ import {
   HiHeart,
 } from "react-icons/hi";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const TutorTile = (props: Tutor) => {
   return (
@@ -16,7 +17,7 @@ const TutorTile = (props: Tutor) => {
       initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex cursor-pointer p-4 justify-between bg-white shadow-md rounded-xl"
+      className="flex p-4 justify-between bg-white shadow-md rounded-xl"
     >
       <div className="  justify-between flex flex-col gap-4 sm:gap-6 md:gap-8 ">
         <div className="flex gap-4 sm:gap-6 md:gap-8">
@@ -73,14 +74,14 @@ const TutorTile = (props: Tutor) => {
       <div className="flex-col flex items-end justify-between">
         <button className="cursor-pointer hover:scale-105 transition duration-150 active:scale-100">
           {props.isFavorite ? (
-            <HiHeart className="size-6 sm:size-7 md:size-8 text-emerald-400" />
+            <HiHeart className="size-6 sm:size-7 md:size-8 text-emerald-500" />
           ) : (
             <HiOutlineHeart className=" text-neutral-300 size-6 sm:size-7 md:size-8" />
           )}
         </button>
-        <button className="cursor-pointer p-2 text-lg rounded-xl bg-emerald-400 text-white text-nowrap">
+        <Link to={`/tutors/id/${props.id}`} className="cursor-pointer font-bold text-xl p-2 rounded-xl bg-emerald-500 text-white text-nowrap">
           Preview
-        </button>
+        </Link>
       </div>
     </motion.div>
   );
