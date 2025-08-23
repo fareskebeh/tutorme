@@ -1,6 +1,7 @@
 import type { Tutor } from "./types";
 
 //this dataset is AI generated
+
 const tutors: Tutor[] = [
   {
     id: "a3f1c9e2-4b7d-4c8a-9f2e-1a2b3c4d5e6f",
@@ -11,12 +12,24 @@ const tutors: Tutor[] = [
     age: 32,
     location: "Amsterdam, Netherlands",
     role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
+    locationAvailability: ["online", "assignment"],
     language: "English",
     availability: "Highly available",
     rate: 45,
     rating: 4.9,
     reviewsCount: 87,
+    reviews: [
+      {
+        by: { id: "u1", firstName: "Liam", email: "liam@example.com", role: "Client" },
+        value: 5,
+        comment: "Amira explained calculus better than my textbook ever could!"
+      },
+      {
+        by: { id: "u2", firstName: "Sophie", email: "sophie@example.com", role: "Client" },
+        value: 4.8,
+        comment: "Very patient and thorough. Highly recommend."
+      }
+    ],
     tags: ["Math", "SAT Prep", "STEM"],
     isFavorite: true,
     pfp: "https://example.com/images/amira.jpg",
@@ -35,12 +48,19 @@ const tutors: Tutor[] = [
     age: 28,
     location: "Rome, Italy",
     role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
+    locationAvailability: ["home"],
     language: "Italian",
     availability: "Available",
     rate: 30,
     rating: 4.2,
     reviewsCount: 34,
+    reviews: [
+      {
+        by: { id: "u3", firstName: "Marco", email: "marco@example.com", role: "Client" },
+        value: 4.5,
+        comment: "Physics finally makes sense thanks to Luca!"
+      }
+    ],
     subjects: [
       { title: "Physics", grade: "11" },
       { title: "Chemistry", grade: "10" },
@@ -55,12 +75,19 @@ const tutors: Tutor[] = [
     age: 41,
     location: "Seoul, South Korea",
     role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
+    locationAvailability: ["assignment", "online"],
     language: "Korean",
     availability: "Slightly available",
     rate: 55,
     rating: 5.0,
     reviewsCount: 120,
+    reviews: [
+      {
+        by: { id: "u4", firstName: "Minji", email: "minji@example.com", role: "Client" },
+        value: 5,
+        comment: "Jin is a master of biology. His AP prep was flawless."
+      }
+    ],
     tags: ["Biology", "AP Science"],
     isFavorite: false,
     pfp: "https://example.com/images/jin.jpg",
@@ -78,121 +105,25 @@ const tutors: Tutor[] = [
     age: 24,
     location: "Toronto, Canada",
     role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
+    locationAvailability: ["online"],
     language: "English",
     availability: "Busy",
     rate: 25,
     rating: 3.8,
     reviewsCount: 12,
+    reviews: [
+      {
+        by: { id: "u5", firstName: "Ava", email: "ava@example.com", role: "Client" },
+        value: 3.5,
+        comment: "Good writing feedback, but slow response time."
+      }
+    ],
     tags: ["English", "Essay Writing"],
     subjects: [
       { title: "English Literature", grade: "11" },
       { title: "Creative Writing", grade: "10" },
     ],
   },
-  {
-    id: "e6f7a8b9-0c1d-2e3f-4a5b-6c7d8e9f0a1b",
-    firstName: "Mohammed",
-    lastName: "Al-Farsi",
-    email: "m.al@example.com",
-    username: "mohammedf",
-    age: 36,
-    location: "Dubai, UAE",
-    role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
-    language: "Arabic",
-    availability: "Available",
-    rate: 40,
-    rating: 4.6,
-    reviewsCount: 65,
-    isFavorite: true,
-    subjects: [
-      { title: "Arabic Language", grade: "9" },
-      { title: "History", grade: "10" },
-    ],
-  },
-  {
-    id: "f0a1b2c3-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
-    firstName: "Sofia",
-    lastName: "Martinez",
-    email: "sofia.m@example.com",
-    username: "sofiam",
-    age: 29,
-    location: "Buenos Aires, Argentina",
-    role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
-    language: "Spanish",
-    availability: "Highly available",
-    rate: 35,
-    rating: 4.7,
-    reviewsCount: 50,
-    tags: ["Spanish", "Language Arts"],
-    pfp: "https://example.com/images/sofia.jpg",
-    subjects: [
-      { title: "Spanish Literature", grade: "11" },
-      { title: "Grammar", grade: "9" },
-    ],
-  },
-  {
-    id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-    firstName: "Ethan",
-    lastName: "Smith",
-    email: "ethan.smith@example.com",
-    username: "ethans",
-    age: 22,
-    location: "New York, USA",
-    role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
-    language: "English",
-    availability: "Busy",
-    rate: 20,
-    rating: 3.5,
-    reviewsCount: 5,
-    subjects: [{ title: "Geometry", grade: "9" }],
-  },
-  {
-    id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
-    firstName: "Aisha",
-    lastName: "Mohamed",
-    email: "aisha.m@example.com",
-    username: "aisham",
-    age: 38,
-    location: "Nairobi, Kenya",
-    role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
-    language: "Swahili",
-    availability: "Available",
-    rate: 33,
-    rating: 4.3,
-    reviewsCount: 22,
-    tags: ["Geography", "Social Studies"],
-    isFavorite: false,
-    subjects: [
-      { title: "Geography", grade: "10" },
-      { title: "Civics", grade: "9" },
-    ],
-  },
-  {
-    id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
-    firstName: "Tomoko",
-    lastName: "Yamamoto",
-    email: "tomoko.y@example.com",
-    username: "tomokoy",
-    age: 45,
-    location: "Osaka, Japan",
-    role: "Tutor",
-    locationAvailability: ["home","assignment","online"],
-    language: "Japanese",
-    availability: "Slightly available",
-    rate: 60,
-    rating: 4.8,
-    reviewsCount: 98,
-    pfp: "https://example.com/images/tomoko.jpg",
-    subjects: [
-      { title: "Japanese Language", grade: "12" },
-      { title: "Calligraphy", grade: "11" },
-    ],
-  },
 ];
 
-export default tutors;
+export default tutors
