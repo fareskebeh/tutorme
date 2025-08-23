@@ -75,3 +75,5 @@ const Search = () => {
 };
 
 export default Search;
+
+// implement search predictions, search routing.
