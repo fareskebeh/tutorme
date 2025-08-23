@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HiChevronLeft, HiX, HiSearch } from "react-icons/hi";
+import {HiX, HiSearch } from "react-icons/hi";
 import { motion } from "framer-motion";
 import useDebounce from "../../hooks/useDebounce";
 
@@ -10,11 +10,6 @@ type Props = {
 type Query = {
   subject: string;
   location: string;
-};
-
-type Prediction = {
-  category: "subject" | "location";
-  value: string
 };
 
 const MbSearch = (props: Props) => {
