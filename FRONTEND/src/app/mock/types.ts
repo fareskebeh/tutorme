@@ -37,6 +37,7 @@ export interface Tutor extends User {
   tags?: string[];
   isFavorite?: boolean;
   subjects: Subject[];
+  locationAvailability: string[]
 }
 
 
