@@ -11,7 +11,7 @@ const TutorFilter = () => {
           <TutorTile {...tutor} />
           </React.Fragment>
         ))
-        
+        //handle Loading state on next commit
       }
     </div>
   )
