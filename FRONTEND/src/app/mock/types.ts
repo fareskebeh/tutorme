@@ -4,27 +4,32 @@ export type Subject = {
 };
 
 export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  username: string;
-  age: number;
-  location: string;
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  username?: string;
+  age?: number;
+  location?: string;
   pfp?: string;
-  role: "Tutor" | "Admin" | "Client";
-  language: string;
+  role?: "Tutor" | "Admin" | "Client";
+  language?: string;
 }
 
 export interface Client extends User {
   parentContactInfo?: {
-    email: string;
-    phone: string;
-    name: string;
-    relation: string;
+    email?: string;
+    phone?: string;
+    name?: string;
+    relation?: string;
   };
 }
 
+export interface Review {
+  by:User;
+  value:number;
+  comment: string;
+}
 export interface Tutor extends User {
   availability:
     | "Busy"
@@ -38,6 +43,7 @@ export interface Tutor extends User {
   isFavorite?: boolean;
   subjects: Subject[];
   locationAvailability: string[]
+  reviews: Review[]
 }
 
 
