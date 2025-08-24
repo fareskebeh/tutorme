@@ -27,7 +27,7 @@ const Search = () => {
     <div className="flex gap-2">
       <div className="relative">
         <HiOutlineBookOpen
-          className="text-neutral-300 absolute top-2.5 left-4"
+          className="text-neutral-400 absolute top-2.5 left-4"
           size={24}
         />
 
@@ -35,7 +35,7 @@ const Search = () => {
           onChange={(e) => setQuery({...query, subject:e.target.value})}
           value={query.subject}
           type="text"
-          className="caret-emerald-400 bg-neutral-100 px-4 outline-none w-full p-2 rounded-xl text-xl pl-12"
+          className="p-2 text-xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="Enter Subject"
         />
         {query.subject && (
@@ -48,7 +48,7 @@ const Search = () => {
       </div>
       <div className="relative">
         <HiOutlineLocationMarker
-          className="text-neutral-300 absolute top-2.5 left-4"
+          className="text-neutral-400 absolute top-2.5 left-4"
           size={24}
         />
 
@@ -56,7 +56,7 @@ const Search = () => {
           onChange={(e) => setQuery({...query, location:e.target.value})}
           value={query.location}
           type="text"
-          className="caret-emerald-400 bg-neutral-100 px-4 outline-none w-full p-2 rounded-xl text-xl pl-12"
+          className="p-2 text-xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="Enter Location"
         />
         {query.location && (
@@ -67,7 +67,7 @@ const Search = () => {
           />
         )}
       </div>
-      <button className="p-1 bg-emerald-400 transition duration-150 hover:opacity-90 active:opacity-80 rounded-xl px-2 text-xl font-bold text-white cursor-pointer">
+      <button className="p-2 bg-emerald-500 transition duration-150 hover:opacity-90 active:opacity-80 rounded-xl px-2 text-xl font-bold text-white cursor-pointer">
         Search
       </button>
     </div>

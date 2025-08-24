@@ -15,7 +15,7 @@ const HomeSearch = () => {
         <div className="relative">
         <HiOutlineBookOpen className="absolute text-neutral-500 top-4 left-4"/>
         <input
-          className="caret-emerald-500 pl-12 outline-none bg-neutral-300/60 transition duration-200 rounded-xl w-full p-3"
+          className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="e.g: Math, Physics.."
           type="text"
         />
@@ -27,7 +27,7 @@ const HomeSearch = () => {
         <div className="relative">
         <HiOutlineLocationMarker className="absolute text-neutral-500 top-4 left-4"/>
         <input
-          className="caret-emerald-500 pl-12 outline-none bg-neutral-300/60 transition duration-200 rounded-xl w-full p-3"
+          className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="e.g: Math, Physics.."
           type="text"
         />
