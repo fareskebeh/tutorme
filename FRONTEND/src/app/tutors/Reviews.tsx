@@ -1,19 +1,13 @@
-import { useContext } from "react";
-import { authContext } from "../../state/authState";
-import type { Review } from "../mock/types";
+import type { Review, User } from "../mock/types";
 import Rating from "../../components/Rating";
 import { Link } from "react-router-dom";
 type Props = {
   reviewCount: number | undefined;
   reviews: Review[] | undefined;
+  user: User | null
 };
 
 const Reviews = (props: Props) => {
-  const auth = useContext(authContext);
-  if (!auth) {
-    throw new Error("authContext is undefined");
-  }
-  const { user } = auth;
 
   return (
     <div className="shadow-md p-4 max-h-full flex flex-col gap-4 rounded-xl justify-between">
@@ -33,7 +27,7 @@ const Reviews = (props: Props) => {
         ))}
       </div>
 
-      {user ? (
+      {props.user ? (
         <div></div>
       ) : (
         <div className="text-xl flex flex-wrap flex-col gap-2 items-start sm:flex-row sm:justify-between sm:items-center">
