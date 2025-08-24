@@ -7,11 +7,30 @@ import {
   HiOutlineHeart,
   HiHeart,
 } from "react-icons/hi";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Rating from "../../components/Rating";
+import { useContext, useState } from "react";
+import Modal from "../../components/Modal";
+import { authContext } from "../../state/authState";
 
 const TutorTile = (props: Tutor) => {
+  const auth = useContext(authContext);
+    if (!auth) {
+      throw new Error("authContext is undefined");
+    }
+    const { user } = auth;
+  
+  const[modal,setModal]=useState<boolean>(false)
+  const favorite=()=> {
+    if(user) {
+      //logic to favorite, in another branch
+    }
+    else {
+      setModal(true)
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -10 }}
@@ -19,6 +38,11 @@ const TutorTile = (props: Tutor) => {
       transition={{ duration: 0.5 }}
       className="flex p-4 justify-between bg-white shadow-md border border-neutral-100 rounded-xl"
     >
+      <AnimatePresence>
+        {
+          modal && <Modal setModal={setModal} prompt="You need to be logged in to perform this action" confirm="Log In" abort="Cancel"/>
+        }
+      </AnimatePresence>
       <div className="  justify-between flex flex-col gap-4 sm:gap-6 md:gap-8 ">
         <div className="flex gap-4 sm:gap-6 md:gap-8">
           <img
@@ -65,9 +89,9 @@ const TutorTile = (props: Tutor) => {
       <div className="flex-col flex items-end justify-between">
         <button className="cursor-pointer hover:scale-105 transition duration-150 active:scale-100">
           {props.isFavorite ? (
-            <HiHeart className="size-6 sm:size-7 md:size-8 text-emerald-500" />
+            <HiHeart onClick={favorite} className="size-6 sm:size-7 md:size-8 text-emerald-500" />
           ) : (
-            <HiOutlineHeart className=" text-neutral-300 size-6 sm:size-7 md:size-8" />
+            <HiOutlineHeart onClick={favorite} className=" text-neutral-300 size-6 sm:size-7 md:size-8" />
           )}
         </button>
         <Link to={`/tutors/id/${props.id}`} className="cursor-pointer font-bold text-xl p-2 rounded-xl active:opacity-80 hover:opacity-90 transition duration-150 bg-emerald-500 text-white text-nowrap">
