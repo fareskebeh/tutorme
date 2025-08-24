@@ -33,7 +33,7 @@ const TutorsLayout = (props: Props) => {
         </div>
       ) : (
         <div className="shadow-md w-full flex p-4 justify-between items-center">
-          <HiSearch onClick={()=> setSOpen(true)} size={24} />
+          <HiSearch className="active:bg-neutral-100 rounded-full" onClick={()=> setSOpen(true)} size={24} />
           <HiAdjustments size={24} />
         </div>
       )}

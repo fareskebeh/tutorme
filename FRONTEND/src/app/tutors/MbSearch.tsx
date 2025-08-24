@@ -47,7 +47,7 @@ const MbSearch = (props: Props) => {
           <HiX
             onClick={() => props.setSOpen(false)}
             size={24}
-            className="float-right"
+            className="float-right active:bg-neutral-100 rounded-full"
           />
         </div>
 
