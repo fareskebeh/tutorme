@@ -27,7 +27,7 @@ const Rating = (props: Props) => {
         ))}
 
       <p className="ml-2 text-neutral-500">
-        {props.rating} {props.reviewsCount && (props.reviewsCount) }
+        {props.rating} {props.reviewsCount && `(${props.reviewsCount})` }
       </p>
     </div>
   );

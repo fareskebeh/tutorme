@@ -8,10 +8,10 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineHeart,
   HiOutlineLocationMarker,
-  HiStar,
   HiOutlineChat
 } from "react-icons/hi";
 import Reviews from "./Reviews";
+import Rating from "../../components/Rating";
 
 const TutorPreview = () => {
   const { id } = useParams();
@@ -62,29 +62,7 @@ const TutorPreview = () => {
         </div>
         {tutor?.rating && (
           <div className="flex flex-col gap-1 sm:gap-2">
-            <div className="flex items-center">
-              {Array(Math.floor(tutor?.rating ?? 0))
-                .fill(null)
-                .map((_, i) => (
-                  <HiStar
-                    key={`filled-${i}`}
-                    className="text-amber-300 size-6 sm:size-7 md:size-8"
-                  />
-                ))}
-
-              {Array(5 - Math.floor(tutor?.rating ?? 0))
-                .fill(null)
-                .map((_, i) => (
-                  <HiStar
-                    key={`empty-${i}`}
-                    className="text-amber-100 size-6 sm:size-7 md:size-8"
-                  />
-                ))}
-
-              <p className="ml-2 text-neutral-500">
-                {tutor?.rating} ({tutor?.reviewsCount})
-              </p>
-            </div>
+            <Rating rating={tutor?.rating} reviewsCount={tutor?.reviewsCount}/>
             <div className="flex flex-col sm:gap-8 sm:flex-row sm:items-center text-neutral-500 items-start gap-1">
               <div className="flex items-center gap-1">
                 <HiOutlineClock /> {tutor?.availability}

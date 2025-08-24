@@ -4,12 +4,12 @@ import {
   HiOutlineLocationMarker,
   HiOutlineClock,
   HiOutlineCurrencyDollar,
-  HiStar,
   HiOutlineHeart,
   HiHeart,
 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Rating from "../../components/Rating";
 
 const TutorTile = (props: Tutor) => {
   return (
@@ -49,16 +49,7 @@ const TutorTile = (props: Tutor) => {
         )}
 
         <div className="flex flex-col gap-1 sm:gap-2">
-          <div className="flex items-center">
-            {Array(5).fill(
-              <HiStar className="text-amber-300 size-6 sm:size-7 md:size-8" />,
-              0,
-              Math.floor(props.rating)
-            )}
-            {Array(5 - Math.floor(props.rating)).fill(
-              <HiStar className="text-amber-100 size-6 sm:size-7 md:size-8" />
-            )}
-          </div>
+          <Rating rating={props.rating}/>
           <div className="flex flex-col sm:gap-8 sm:flex-row sm:items-center text-neutral-500 items-start gap-1">
             <div className="flex items-center gap-1">
             <HiOutlineClock /> {props.availability}
