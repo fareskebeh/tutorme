@@ -82,6 +82,10 @@ const App = () => {
           <Route path="/tutors" element={<TutorsLayout vp={vp}/>}>
             <Route index element={<TutorsList/>}/>
             <Route path="id/:id" element={<TutorPreview/>}/>
+            {/* Actions */}
+              <Route path="book/:id"/>
+              <Route path="chat/:id"/>
+
             <Route path="subjects/:subject" element={<Subjects/>}/>
             <Route path="request" element={<Request/>}/>
             <Route path="filter/:method" element={<TutorFilter/>}/>
