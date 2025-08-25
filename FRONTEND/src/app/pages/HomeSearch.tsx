@@ -23,12 +23,12 @@ const HomeSearch = () => {
       </div>
 
       <div className="text-2xl space-y-4">
-        <p className="font-bold">Enter the subject:</p>
+        <p className="font-bold">Enter the location:</p>
         <div className="relative">
         <HiOutlineLocationMarker className="absolute text-neutral-500 top-4 left-4"/>
         <input
           className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
-          placeholder="e.g: Math, Physics.."
+          placeholder="e.g: New York, Moscow..."
           type="text"
         />
         </div>
