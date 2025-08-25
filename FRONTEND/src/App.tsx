@@ -88,7 +88,7 @@ const App = () => {
 
             <Route path="subjects/:subject" element={<Subjects/>}/>
             <Route path="request" element={<Request/>}/>
-            <Route path="filter/:method" element={<TutorFilter/>}/>
+            <Route path="filter" element={<TutorFilter/>}/>
           </Route>
           
           {/*jobs */}
