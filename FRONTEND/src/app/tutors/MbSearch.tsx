@@ -2,27 +2,40 @@ import React, { useEffect, useState } from "react";
 import { HiX, HiSearch, HiOutlineLocationMarker, HiOutlineBookOpen } from "react-icons/hi";
 import { motion } from "framer-motion";
 import useDebounce from "../../hooks/useDebounce";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   setSOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type Query = {
-  subject: string;
-  location: string;
+  subject: string | undefined;
+  location: string | undefined;
 };
 
 const MbSearch = (props: Props) => {
+  const navigate = useNavigate()
   const [query, setQuery] = useState<Query>({
-    subject: "",
-    location: "",
+    subject: undefined,
+    location: undefined,
   });
   const debQuery = useDebounce(query, 500);
+
+  const search = ()=> {
+    const searchQuery = new URLSearchParams()
+    if(query.subject) {
+      searchQuery.append("subject", query.subject)
+    }
+    if(query.location) {
+      searchQuery.append("location", query.location)
+    }
+    navigate(`/tutors?${searchQuery.toString()}`)
+    props.setSOpen(false)
+  }
 
   useEffect(() => {
     if (debQuery) {
       //fetch logic for search (postponed)
-      console.log("fetching: ", query);
     }
   }, [debQuery]);
 
@@ -100,7 +113,7 @@ const MbSearch = (props: Props) => {
           <p className="w-[70%]">Enter keywords to start searching</p>
         </div>
 
-        <button className="p-3 text-xl text-white font-bold bg-emerald-500 active:opacity-80 transition duration-150 rounded-xl">
+        <button onClick={()=> search()} className="p-3 text-xl text-white font-bold bg-emerald-500 active:opacity-80 transition duration-150 rounded-xl">
           Search
         </button>
       </motion.div>
