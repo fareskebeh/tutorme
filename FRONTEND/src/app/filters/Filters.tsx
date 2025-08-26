@@ -6,7 +6,7 @@ import {
 } from "react-icons/hi";
 import { HiArrowRight } from "react-icons/hi";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 type Filter = {
   subject?: string | undefined;
@@ -19,12 +19,22 @@ type Filter = {
 const Filters = () => {
   const navigate = useNavigate();
   const [bar, setBar] = useState<boolean>(false);
+  const [searchParams] = useSearchParams()
+
+  const initParams: Filter = {
+    subject: searchParams.get("subject") ?? undefined,
+    location: searchParams.get("location") ?? undefined,
+    availability: searchParams.get("availability") as Filter["availability"] ?? undefined,
+    availabilityLocation: searchParams.get("availabilityLocation") as Filter["availabilityLocation"] ?? undefined,
+    maxRate: Number(searchParams.get("maxRate")) ?? undefined,
+  }
+
   const [filters, setFilters] = useState<Filter>({
-    subject: undefined,
-    location: undefined,
-    availability: undefined,
-    availabilityLocation: undefined,
-    maxRate: undefined,
+    subject: initParams.subject,
+    location: initParams.location,
+    availability: initParams.availability,
+    availabilityLocation: initParams.availabilityLocation,
+    maxRate: initParams.maxRate,
   });
 
   const filterTutors = () => {
@@ -95,7 +105,7 @@ const Filters = () => {
           <div className="text-xl space-y-4">
             <p className="font-bold">Subject</p>
             <div className="relative">
-              <HiOutlineBookOpen className="absolute text-neutral-500 top-4 left-4" />
+              <HiOutlineBookOpen className="absolute text-neutral-500 top-3.5 left-4" />
               <input
                 value={filters?.subject}
                 onChange={(e) =>
@@ -111,14 +121,14 @@ const Filters = () => {
           <div className="text-xl space-y-4">
             <p className="font-bold">Location</p>
             <div className="relative">
-              <HiOutlineLocationMarker className="absolute text-neutral-500 top-4 left-4" />
+              <HiOutlineLocationMarker className="absolute text-neutral-500 top-3.5 left-4" />
               <input
                 value={filters?.location}
                 onChange={(e) =>
                   setFilters({ ...filters, location: e.target.value })
                 }
                 className="p-2 text-xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
-                placeholder="e.g: Math, Physics.."
+                placeholder="e.g: New York, Rome.."
                 type="text"
               />
             </div>
