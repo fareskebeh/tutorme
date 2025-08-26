@@ -34,7 +34,7 @@ const TutorFilter = () => {
   },[])
 
   return (
-    <div className="p-2 sm:pt-17 flex bg-neutral-100 flex-col gap-2">
+    <div className="p-2 flex bg-neutral-100 flex-col gap-2">
       {
         tutors.map((tutor, i) => (
           <React.Fragment key={i}>

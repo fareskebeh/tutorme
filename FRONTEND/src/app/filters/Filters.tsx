@@ -96,7 +96,7 @@ const Filters = () => {
         {/*Header*/}
         <div className="flex justify-between">
           <div className="text-xl">Filter by</div>
-          <button onClick={() => setBar(false)}>
+          <button className="cursor-pointer hover:bg-neutral-100 rounded-full transition duration-150" onClick={() => setBar(false)}>
             <HiArrowRight size={30} />
           </button>
         </div>
