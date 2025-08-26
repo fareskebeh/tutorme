@@ -24,10 +24,10 @@ const MbSearch = (props: Props) => {
   const search = ()=> {
     const searchQuery = new URLSearchParams()
     if(query.subject) {
-      searchQuery.append("subject", query.subject)
+      searchQuery.append("subject", query.subject.trim().toLowerCase())
     }
     if(query.location) {
-      searchQuery.append("location", query.location)
+      searchQuery.append("location", query.location.trim().toLowerCase())
     }
     navigate(`/tutors?${searchQuery.toString()}`)
     props.setSOpen(false)
