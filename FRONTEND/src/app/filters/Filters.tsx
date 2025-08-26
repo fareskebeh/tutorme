@@ -40,10 +40,10 @@ const Filters = () => {
   const filterTutors = () => {
     const filterParams = new URLSearchParams();
     if(filters.subject) {
-      filterParams.append("subject", filters.subject)
+      filterParams.append("subject", filters.subject.trim().toLowerCase())
     }
     if(filters.location) {
-      filterParams.append("location", filters.location)
+      filterParams.append("location", filters.location.trim().toLowerCase())
     }
     if(filters.availability) {
       filterParams.append("availability", filters.availability)
