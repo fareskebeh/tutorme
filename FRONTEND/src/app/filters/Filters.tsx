@@ -55,7 +55,7 @@ const Filters = () => {
       filterParams.append("maxRate", String(filters.maxRate))
     }
     setBar(false)
-    navigate(`/tutors/filter?${filterParams.toString()}`)
+    navigate(`/tutors?${filterParams.toString()}`)
       };
 
   useEffect(() => {

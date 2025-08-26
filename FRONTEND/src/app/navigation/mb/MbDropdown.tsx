@@ -54,13 +54,13 @@ const MbDropdown = ({ label, dropContent, setBar }: Props) => {
                   <Link
                     onClick={() => setBar(false)}
                     className={`rounded-lg ${
-                      location.pathname === `/${label}/filter/?availabilityLocation=${drop.toLowerCase()}`
+                      location.pathname === `/${label}?availabilityLocation=${drop.toLowerCase()}`
                         ? "bg-emerald-500 text-white"
                         : ""
                     }`}
                     to={`${
                       label === "tutors" ? "/tutors" : "/jobs"
-                    }/filter?availabilityLocation=${drop.toLowerCase()}`}
+                    }?availabilityLocation=${drop.toLowerCase()}`}
                     key={index}
                   >
                     {drop}
