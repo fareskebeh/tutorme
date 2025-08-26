@@ -1,10 +1,45 @@
 import { HiSearch } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { HiOutlineLocationMarker, HiOutlineBookOpen } from "react-icons/hi";
+import useDebounce from "../../hooks/useDebounce";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+type Query = {
+  subject: string | undefined;
+  location: string | undefined;
+};
 
 const HomeSearch = () => {
+
+  const navigate = useNavigate()
+    const [query, setQuery] = useState<Query>({
+      subject: undefined,
+      location: undefined,
+    });
+    const debQuery = useDebounce(query, 500);
+  
+    const search = ()=> {
+      const searchQuery = new URLSearchParams()
+      if(query.subject) {
+        searchQuery.append("subject", query.subject.trim().toLowerCase())
+      }
+      if(query.location) {
+        searchQuery.append("location", query.location.trim().toLowerCase())
+      }
+      navigate(`/tutors?${searchQuery.toString()}`)
+    }
+
+     useEffect(() => {
+        if (debQuery) {
+          //fetch logic postponed too
+          console.log("fetching: ", query);
+        }
+      }, [debQuery]);
+  
+
   return (
-    <motion.form
+    <motion.div
       initial={{ opacity: 0, y: -20, scale: "97%" }}
       whileInView={{ opacity: 1, y: 0, scale: "100%" }}
       transition={{ duration: 0.5 }}
@@ -15,6 +50,8 @@ const HomeSearch = () => {
         <div className="relative">
         <HiOutlineBookOpen className="absolute text-neutral-500 top-4 left-4"/>
         <input
+          value={query.subject}
+          onChange={(e)=> setQuery({...query, subject: e.target.value})}
           className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="e.g: Math, Physics.."
           type="text"
@@ -27,6 +64,8 @@ const HomeSearch = () => {
         <div className="relative">
         <HiOutlineLocationMarker className="absolute text-neutral-500 top-4 left-4"/>
         <input
+          value={query.location}
+          onChange={(e)=> setQuery({...query, location: e.target.value})}
           className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="e.g: New York, Moscow..."
           type="text"
@@ -35,11 +74,11 @@ const HomeSearch = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className="cursor-pointer hover:scale-102 transition duration-200 bg-emerald-500 text-white flex items-center gap-2 active:scale-98 font-bold text-2xl p-3 rounded-xl">
+        <button onClick={()=>search()} className="cursor-pointer hover:scale-102 transition duration-200 bg-emerald-500 text-white flex items-center gap-2 active:scale-98 font-bold text-2xl p-3 rounded-xl">
           <HiSearch /> Search
         </button>
       </div>
-    </motion.form>
+    </motion.div>
   );
 };
 
