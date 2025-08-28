@@ -1,5 +1,10 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Nav from "./app/navigation/Nav";
 import NotFound from "./app/fallback/NotFound";
 import Loading from "./app/fallback/Loading";
@@ -36,95 +41,234 @@ const TSettings = lazy(() => import("./app/tutorDash/TSettings"));
 const Earnings = lazy(() => import("./app/tutorDash/Earnings"));
 
 import { authContext } from "./state/authState";
+import { themeContext } from "./state/Theme";
 import TutorsList from "./app/tutors/TutorsList";
 import TutorsLayout from "./app/tutors/TutorsLayout";
 
 const App = () => {
   type User = {
-    username : string;
+    username: string;
     pfp: string;
-}
+  };
 
-  const[vp,setVp] = useState<string>("")
+  const [vp, setVp] = useState<string>("");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const adjVp = () => {
+      setVp(window.innerWidth < 800 ? "small" : "wide");
+    };
+
+    window.addEventListener("resize", adjVp);
+
+    adjVp();
+
+    return () => window.removeEventListener("resize", adjVp);
+  }, []);
+  const [guest, setGuest] = useState<string>("");
+  const [user, setUser] = useState<User | null>(null);
+
+  const toggleTheme = () => {
+    if (theme === "dark") {
+      setTheme("light");
+    }
+    if (theme === "light") {
+      setTheme("dark");
+    }
+  };
+
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const currTheme: "light" | "dark" = stored === "light" ? "light" : "dark";
+    setTheme(currTheme);
+  }, []);
 
   useEffect(()=> {
+    localStorage.setItem("theme",theme)
+  },[theme])
 
-      const adjVp=()=> {
-        setVp(window.innerWidth <800 ? "small" : "wide")
-      }  
-
-      window.addEventListener("resize",adjVp);
-      
-      adjVp();  
-
-      return ()=> window.removeEventListener("resize",adjVp)
-    },[])
-  const[guest, setGuest] = useState<string>("")
-  const[user,setUser] = useState< User | null>(null)
   return (
-    <authContext.Provider value={{user,setUser}}>
-    <Router>
-      {/* Navigation */}
-      <Nav vp={vp}/>
+    <authContext.Provider value={{ user, setUser }}>
+      <themeContext.Provider value={{ theme }}>
+        <Router>
+          {/* Navigation */}
+          <Nav toggleTheme={toggleTheme} vp={vp} />
 
-      <Suspense fallback={<Loading/>}>
-        <Routes>
-          
-          {/* General */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Navigate to="/home"/>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<Faq/>}/>
-          
-          {/* Tutors */}
-          <Route path="/tutors" element={<TutorsLayout vp={vp}/>}>
-            <Route index element={<TutorsList/>}/>
-            <Route path="id/:id" element={<TutorPreview/>}/>
-            {/* Actions */}
-              <Route path="book/:id"/>
-              <Route path="chat/:id"/>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              {/* General */}
+              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/faq" element={<Faq />} />
 
-            {/*<Route path="filter" element={<TutorFilter/>}/>*/}
-          </Route>
-          
-          {/*jobs */}
-          <Route path="/jobs" element={<Jobs/>}>
-            <Route path=":id" element={<JobPreview/>}/>
-            <Route path="apply/:id" element={<JobApplication/>}/>
-            <Route path=":method" element={<FilterJobs/>}/>
-          </Route>
+              {/* Tutors */}
+              <Route path="/tutors" element={<TutorsLayout vp={vp} />}>
+                <Route index element={<TutorsList />} />
+                <Route path="id/:id" element={<TutorPreview />} />
+                {/* Actions */}
+                <Route path="book/:id" />
+                <Route path="chat/:id" />
 
-          {/* auth */}
-          <Route path="/register" element={<Public><Register/></Public>}/>
-          <Route path="/login" element={<Public><Login setGuest={setGuest}/></Public>}/>
-          <Route path="/forgot-password" element={guest==="" ? <Navigate to="*" replace/> : (<Public><ForgotPw guest={guest}/></Public>)}/>
-          <Route path="/verify" element={<Verify/>}/>
-          <Route path="/reset-password" element={<PwReset/>}/>
-          
-          {/* student dashboard */}
-          <Route path="/dashboard" element={<Protected><Dashboard/></Protected>}>
-            <Route path="requests" element={<Protected><Requests/></Protected>} />
-            <Route path="hire-history" element={<Protected><HireHistory/></Protected>} />
-            <Route path="favorites" element={<Protected><Favorites/></Protected>} />
-            <Route path="messages" element={<Protected><Messages/></Protected>} />
-            <Route path="settings" element={<Protected> <Settings/></Protected>} />
-          </Route>
-          
-          {/* tutor dashboard */}
-          <Route path="/tutor-panel" element={  <Protected><Panel       /></Protected>}>
-            <Route path="profile" element={     <Protected><Profile     /></Protected>} />
-            <Route path="applications" element={<Protected><Applications/></Protected>} />
-            <Route path="my-students" element={ <Protected><Students    /></Protected>} />
-            <Route path="messages" element={    <Protected><Messages    /></Protected>} />
-            <Route path="earnings" element={    <Protected><Earnings    /></Protected>} />
-            <Route path="settings" element={    <Protected><TSettings   /></Protected>} />
-          </Route>
-          
-          {/* catch-all */}
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-      </Suspense>
-    </Router>
+                {/*<Route path="filter" element={<TutorFilter/>}/>*/}
+              </Route>
+
+              {/*jobs */}
+              <Route path="/jobs" element={<Jobs />}>
+                <Route path=":id" element={<JobPreview />} />
+                <Route path="apply/:id" element={<JobApplication />} />
+                <Route path=":method" element={<FilterJobs />} />
+              </Route>
+
+              {/* auth */}
+              <Route
+                path="/register"
+                element={
+                  <Public>
+                    <Register />
+                  </Public>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <Public>
+                    <Login setGuest={setGuest} />
+                  </Public>
+                }
+              />
+              <Route
+                path="/forgot-password"
+                element={
+                  guest === "" ? (
+                    <Navigate to="*" replace />
+                  ) : (
+                    <Public>
+                      <ForgotPw guest={guest} />
+                    </Public>
+                  )
+                }
+              />
+              <Route path="/verify" element={<Verify />} />
+              <Route path="/reset-password" element={<PwReset />} />
+
+              {/* student dashboard */}
+              <Route
+                path="/dashboard"
+                element={
+                  <Protected>
+                    <Dashboard />
+                  </Protected>
+                }
+              >
+                <Route
+                  path="requests"
+                  element={
+                    <Protected>
+                      <Requests />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="hire-history"
+                  element={
+                    <Protected>
+                      <HireHistory />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="favorites"
+                  element={
+                    <Protected>
+                      <Favorites />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="messages"
+                  element={
+                    <Protected>
+                      <Messages />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="settings"
+                  element={
+                    <Protected>
+                      {" "}
+                      <Settings />
+                    </Protected>
+                  }
+                />
+              </Route>
+
+              {/* tutor dashboard */}
+              <Route
+                path="/tutor-panel"
+                element={
+                  <Protected>
+                    <Panel />
+                  </Protected>
+                }
+              >
+                <Route
+                  path="profile"
+                  element={
+                    <Protected>
+                      <Profile />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="applications"
+                  element={
+                    <Protected>
+                      <Applications />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="my-students"
+                  element={
+                    <Protected>
+                      <Students />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="messages"
+                  element={
+                    <Protected>
+                      <Messages />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="earnings"
+                  element={
+                    <Protected>
+                      <Earnings />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="settings"
+                  element={
+                    <Protected>
+                      <TSettings />
+                    </Protected>
+                  }
+                />
+              </Route>
+
+              {/* catch-all */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </themeContext.Provider>
     </authContext.Provider>
   );
 };
