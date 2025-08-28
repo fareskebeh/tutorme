@@ -11,8 +11,6 @@ const About = lazy(() => import("./app/pages/About"));
 const Faq = lazy(() => import("./app/pages/Faq"));
 
 const TutorPreview = lazy(() => import("./app/tutors/TutorPreview"));
-const Subjects = lazy(() => import("./app/tutors/Subjects"));
-const Request = lazy(() => import("./app/tutors/Request"));
 //const TutorFilter = lazy(() => import("./app/tutors/TutorFilter"));
 
 const Jobs = lazy(() => import("./app/jobs/Jobs"));
@@ -86,8 +84,6 @@ const App = () => {
               <Route path="book/:id"/>
               <Route path="chat/:id"/>
 
-            <Route path="subjects/:subject" element={<Subjects/>}/>
-            <Route path="request" element={<Request/>}/>
             {/*<Route path="filter" element={<TutorFilter/>}/>*/}
           </Route>
           
