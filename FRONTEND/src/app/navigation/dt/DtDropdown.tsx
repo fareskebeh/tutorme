@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from 'react'
 import { HiChevronDown } from 'react-icons/hi2'
 import {motion, AnimatePresence} from "framer-motion"
-import {Link} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 
 type Props = {
   dropContent: string[],
@@ -11,6 +11,7 @@ type Props = {
 const DtDropdown = ({label,dropContent}: Props) => {
   const[open,setOpen] = useState<boolean>(false)
   const menuRef = useRef<HTMLDivElement | null>(null)
+  const{pathname, search} = useLocation()
 
   useEffect(()=> {
     const close = (e: MouseEvent) => {
@@ -37,7 +38,8 @@ const DtDropdown = ({label,dropContent}: Props) => {
       <motion.div initial={{opacity:0, y:-20}} exit={{opacity:0, y:-20}} animate={{opacity:1, y:0}} transition={{duration:0.2}} className='flex z-[999] flex-col gap-1 absolute p-2 w-full *:p-2 bg-white top-10 border rounded-xl border-neutral-400/40'>
         {
           dropContent.map((drop,index)=> (
-            <Link onClick={()=>setOpen(false)} className={`cursor-pointer rounded-lg ${location.pathname=== `/${label}?availabilityLocation=${drop.toLowerCase()}` ? "bg-emerald-500 text-white" : "hover:bg-neutral-100 transition duration-200"}`} to={`${label==="tutors" ? "/tutors" : "/jobs"}?availabilityLocation=${drop.toLowerCase()}`} key={index}>{drop}</Link>
+            <Link onClick={()=>setOpen(false)} className={`cursor-pointer rounded-lg ${
+              pathname === `/${label}` && search=== `?availabilityLocation=${drop.toLowerCase()}` ? "bg-emerald-500 text-white" : "hover:bg-neutral-100 transition duration-200"}`} to={`${label==="tutors" ? "/tutors" : "/jobs"}?availabilityLocation=${drop.toLowerCase()}`} key={index}>{drop}</Link>
           ))
         }
       </motion.div>

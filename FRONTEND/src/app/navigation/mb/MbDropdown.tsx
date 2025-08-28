@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { HiChevronDown } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 type Props = {
   dropContent: string[];
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const MbDropdown = ({ label, dropContent, setBar }: Props) => {
+  const {pathname, search} = useLocation()
   const [open, setOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -54,7 +56,7 @@ const MbDropdown = ({ label, dropContent, setBar }: Props) => {
                   <Link
                     onClick={() => setBar(false)}
                     className={`rounded-lg ${
-                      location.pathname === `/${label}?availabilityLocation=${drop.toLowerCase()}`
+                      pathname === `/${label}` && search=== `?availabilityLocation=${drop.toLowerCase()}`
                         ? "bg-emerald-500 text-white"
                         : ""
                     }`}

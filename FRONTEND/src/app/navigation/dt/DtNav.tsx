@@ -14,7 +14,7 @@ const DtNav = () => {
   }
   const { user } = auth;
   const dropContent: string[] = ["All", "Online", "Home"];
-  const dropdowns: string[] = ["tutors", "jobs"];
+  const dropdowns: string[] = ["tutors"];
   return (
     <div className="py-2 bg-white px-4 flex items-center justify-between fixed top-0 left-0 right-0 z-[899] *:z-[899]">
       <div className="flex *:transition duration-300 items-center gap-4">

@@ -15,7 +15,7 @@ const MbMenu = () => {
   const {user} = auth;
   const [bar, setBar] = useState<boolean>(false);
   const dropContent: string[] = ["All", "Online", "Home"];
-  const dropdowns: string[] = ["tutors", "jobs"];
+  const dropdowns: string[] = ["tutors"];
 
   return (
     <div className="flex">
