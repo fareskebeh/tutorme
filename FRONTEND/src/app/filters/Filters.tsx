@@ -26,7 +26,9 @@ const Filters = () => {
     location: searchParams.get("location") ?? undefined,
     availability: searchParams.get("availability") as Filter["availability"] ?? undefined,
     availabilityLocation: searchParams.get("availabilityLocation") as Filter["availabilityLocation"] ?? undefined,
-    maxRate: Number(searchParams.get("maxRate")) ?? undefined,
+    maxRate: searchParams.get("maxRate") !== null 
+  ? Number(searchParams.get("maxRate")) 
+  : undefined,
   }
 
   const [filters, setFilters] = useState<Filter>({
@@ -34,7 +36,7 @@ const Filters = () => {
     location: initParams.location,
     availability: initParams.availability,
     availabilityLocation: initParams.availabilityLocation,
-    maxRate: initParams.maxRate,
+    maxRate: initParams.maxRate
   });
 
   const filterTutors = () => {
