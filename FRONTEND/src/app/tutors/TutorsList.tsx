@@ -3,6 +3,9 @@ import tutors from "../mock/tutors";
 import TutorTile from "./TutorTile";
 import type { Tutor } from "../mock/types";
 import { useSearchParams } from "react-router-dom";
+import TutorsListLoader from "../fallback/loading/TutorsListLoader";
+import TutorListError from "../fallback/error/TutorListError";
+
 
 type Filter = {
   subject?: string | undefined;
@@ -12,8 +15,14 @@ type Filter = {
   maxRate?: number | undefined;
 };
 
+type Results = {
+  list: Tutor[] | undefined;
+  state: "ERROR" | "LOADING" | "SUCCESS";
+  message: string | null;
+}
+
 const TutorsList = () => {
-  const [results, setResults] = useState<Tutor[] | null>(null);
+  const [results, setResults] = useState<Results | null>(null);
 
   const [searchParams] = useSearchParams();
 
@@ -30,17 +39,37 @@ const TutorsList = () => {
   };
 
   useEffect(()=> {
-    //API call code placeholderrrr 
-  },[])
+    
+    const getTutors = ()=> {
+      setResults({
+        list: undefined,
+        state:"LOADING",
+        message:null,
+      })
+      setTimeout(()=> {
+        setResults({
+          list: tutors,
+          state: "SUCCESS",
+          //replace with fetch logic when backend is done
+          message: null
+        })
+      },5000)
+    }
+
+    getTutors()
+  },[initParams.subject, initParams.location, initParams.availability, initParams.availabilityLocation, initParams.maxRate])
 
   return (
-    <div className="p-2 flex bg-neutral-100 flex-col gap-2">
-      {
-        tutors.map((tutor, i) => (
+ 
+    <div className={`p-2 flex bg-neutral-100 flex-col gap-2 ${results?.state==="ERROR" && "h-[80dvh] sm:h-[78dvh]"}`}>
+      { results?.state==="LOADING" ? <TutorsListLoader/> :
+        results?.state==="ERROR" ? <TutorListError/> :
+      (
+        results?.list?.map((tutor, i) => (
           <React.Fragment key={i}>
             <TutorTile {...tutor} />
           </React.Fragment>
-        ))
+        )))
         //handle Loading state on next commit
       }
     </div>
