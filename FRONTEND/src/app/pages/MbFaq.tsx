@@ -10,7 +10,7 @@ const MbFaq = () => {
           <Fragment key={index}>
             <Expandable question={faq.q} answer={faq.a}/>
           {
-            index!==faqs.length-1 ? <hr/> : ""
+            index!==faqs.length-1 ? <div className="h-px bg-neutral-200 dark:bg-slate-900"/> : ""
           }
           </Fragment>
         ))

@@ -3,7 +3,7 @@ import HomeSearch from "./HomeSearch";
 
 const Home = () => {
   return (
-    <div className="h-[100dvh] pt-20 px-8 flex flex-col sm:flex-row">
+    <div className="h-[100dvh] dark:text-white transition duration-150 pt-20 px-8 flex flex-col sm:flex-row">
       <div className=" sm:h-full flex justify-center sm:text-left items-center sm:flex-1">
         <SplitText
           text="Are you in need of a tutor right away?"

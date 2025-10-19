@@ -43,16 +43,16 @@ const HomeSearch = () => {
       initial={{ opacity: 0, y: -20, scale: "97%" }}
       whileInView={{ opacity: 1, y: 0, scale: "100%" }}
       transition={{ duration: 0.5 }}
-      className="p-6 space-y-6 my-4 sm:flex-[0.75] rounded-2xl bg-gradient-to-br from-neutral-200 to-neutral-100 shadow-lg"
+      className="p-6 dark:from-slate-900 dark:to-slate-800 transition duration-150 space-y-6 my-4 sm:flex-[0.75] rounded-2xl bg-gradient-to-br from-neutral-200 to-neutral-100 shadow-lg"
     >
       <div className="text-2xl space-y-4">
         <p className="font-bold">Enter the subject:</p>
         <div className="relative">
-        <HiOutlineBookOpen className="absolute text-neutral-500 top-4 left-4"/>
+        <HiOutlineBookOpen className="absolute dark:text-slate-500 text-neutral-500 top-4 left-4"/>
         <input
           value={query.subject}
           onChange={(e)=> setQuery({...query, subject: e.target.value})}
-          className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
+          className="p-3 text-2xl bg-neutral-300/50 transition duration-150 dark:bg-slate-700/50 dark:border-slate-800 dark:placeholder:text-slate-500 placeholder:text-neutral-500 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="e.g: Math, Physics.."
           type="text"
         />
@@ -62,11 +62,11 @@ const HomeSearch = () => {
       <div className="text-2xl space-y-4">
         <p className="font-bold">Enter the location:</p>
         <div className="relative">
-        <HiOutlineLocationMarker className="absolute text-neutral-500 top-4 left-4"/>
+        <HiOutlineLocationMarker className="absolute dark:text-slate-500 text-neutral-500 top-4 left-4"/>
         <input
           value={query.location}
           onChange={(e)=> setQuery({...query, location: e.target.value})}
-          className="p-3 text-2xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
+          className="p-3 text-2xl bg-neutral-300/50 transition duration-150 dark:bg-slate-700/50 dark:border-slate-800 dark:placeholder:text-slate-500 placeholder:text-neutral-500 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
           placeholder="e.g: New York, Moscow..."
           type="text"
         />
@@ -74,7 +74,7 @@ const HomeSearch = () => {
       </div>
 
       <div className="flex justify-center">
-        <button onClick={()=>search()} className="cursor-pointer hover:scale-102 transition duration-200 bg-emerald-500 text-white flex items-center gap-2 active:scale-98 font-bold text-2xl p-3 rounded-xl">
+        <button onClick={()=>search()} className="dark:bg-emerald-600 transition duration-150 cursor-pointer hover:scale-102 bg-emerald-500 text-white flex items-center gap-2 active:scale-98 font-bold text-2xl p-3 rounded-xl">
           <HiSearch /> Search
         </button>
       </div>
