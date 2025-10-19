@@ -74,7 +74,7 @@ const Filters = () => {
   return (
     <div className="flex">
       <button
-        className="cursor-pointer p-1 rounded-full hover:bg-neutral-100 transition duration-150"
+        className="cursor-pointer p-1  dark:text-white dark:hover:bg-slate-800 rounded-full hover:bg-neutral-100 transition duration-150"
         onClick={() => setBar(!bar)}
       >
         <HiAdjustments size={25} />
@@ -93,7 +93,7 @@ const Filters = () => {
       <div
         className={`${
           bar ? "" : "translate-x-full"
-        } w-[70%] sm:w-[50%] p-4 shadow-lg h-[100dvh] flex justify-between flex-col transition duration-200 z-[999] gap-8 fixed top-0 bg-white right-0 bottom-0`}
+        } w-[70%] sm:w-[50%] p-4 shadow-lg h-[100dvh] flex justify-between dark:bg-slate-950 dark:text-white flex-col transition duration-150 z-[999] gap-8 fixed top-0 bg-white right-0 bottom-0`}
       >
         {/*Header*/}
         <div className="flex justify-between">
@@ -103,17 +103,17 @@ const Filters = () => {
           </button>
         </div>
 
-        <div className="flex flex-col gap-12 h-[90%] overflow-y-auto">
+        <div className="flex flex-col gap-12 scrollbar scrollbar-thumb-neutral-200 scrollbar-track-white dark:scrollbar-thumb-slate-800 dark:scrollbar-track-slate-900 pr-4 h-[90%] overflow-y-auto">
           <div className="text-xl space-y-4">
             <p className="font-bold">Subject</p>
             <div className="relative">
-              <HiOutlineBookOpen className="absolute text-neutral-500 top-3.5 left-4" />
+              <HiOutlineBookOpen className="absolute dark:text-slate-600 text-neutral-500 top-3.5 left-4" />
               <input
                 value={filters?.subject}
                 onChange={(e) =>
                   setFilters({ ...filters, subject: e.target.value })
                 }
-                className="p-2 text-xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
+                className="p-2 dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600 dark:text-white text-xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
                 placeholder="e.g: Math, Physics.."
                 type="text"
               />
@@ -123,20 +123,20 @@ const Filters = () => {
           <div className="text-xl space-y-4">
             <p className="font-bold">Location</p>
             <div className="relative">
-              <HiOutlineLocationMarker className="absolute text-neutral-500 top-3.5 left-4" />
+              <HiOutlineLocationMarker className="absolute dark:text-slate-600 text-neutral-500 top-3.5 left-4" />
               <input
                 value={filters?.location}
                 onChange={(e) =>
                   setFilters({ ...filters, location: e.target.value })
                 }
-                className="p-2 text-xl bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
+                className="p-2 text-xl dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600 dark:text-white bg-neutral-300/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 pl-12 border-neutral-300"
                 placeholder="e.g: New York, Rome.."
                 type="text"
               />
             </div>
           </div>
 
-          <div className="text-xl space-y-4">
+          <div className="text-xl space-y-4 dark:**:[&>span]:text-slate-400">
             <p className="font-bold">Availability</p>
             <div className="*:space-x-2 space-y-2">
               <div>
@@ -150,7 +150,7 @@ const Filters = () => {
                   }
                   type="radio"
                   name="avail"
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                 />
                 <span>All</span>
               </div>
@@ -168,7 +168,7 @@ const Filters = () => {
                   }
                   type="radio"
                   name="avail"
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                 />
                 <span>Highly Available</span>
               </div>
@@ -184,14 +184,14 @@ const Filters = () => {
                   }
                   type="radio"
                   name="avail"
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                 />
                 <span>Available</span>
               </div>
             </div>
           </div>
 
-          <div className="text-xl space-y-4">
+          <div className="text-xl space-y-4 dark:**:[&>span]:text-slate-400">
             <p className="font-bold">Availability Location</p>
             <div className="*:space-x-2 space-y-2">
               <div>
@@ -206,7 +206,7 @@ const Filters = () => {
                     })
                   }
                   type="radio"
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                   name="avLoc"
                 />
                 <span>All</span>
@@ -224,7 +224,7 @@ const Filters = () => {
                     })
                   }
                   type="radio"
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                   name="avLoc"
                 />
                 <span>Online</span>
@@ -241,7 +241,7 @@ const Filters = () => {
                       availabilityLocation: "home",
                     })
                   }
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                   name="avLoc"
                 />
                 <span>Home</span>
@@ -261,7 +261,7 @@ const Filters = () => {
                       availabilityLocation: "assignment",
                     })
                   }
-                  className="bg-emerald-500"
+                  className="accent-emerald-500"
                   name="avLoc"
                 />
                 <span>Assignment</span>
@@ -280,10 +280,10 @@ const Filters = () => {
                 type="range"
                 min="0.99"
                 step="1"
-                className="w-[50%] bg-emerald-500 cursor-pointer"
+                className="w-[50%] range accent-emerald-500 cursor-pointer"
                 max="99.99"
               />
-              <span className="p-2 text-xl bg-neutral-300/50 border rounded-xl border-b-2 border-neutral-300">
+              <span className="p-2 text-xl dark:bg-slate-900 dark:border-slate-800 bg-neutral-300/50 border rounded-xl border-b-2 border-neutral-300">
                 ${filters?.maxRate} /hr
               </span>
             </div>
@@ -291,12 +291,12 @@ const Filters = () => {
         </div>
 
         <div className="p-2 *:cursor-pointer *:p-2 *:text-xl *:hover:opacity-90 *:active:opacity-80 *:transition *:duration-150 *:shadow-md *:font-bold flex *:flex-1 gap-4 *:rounded-xl">
-          <button onClick={filterTutors} className="text-white bg-emerald-500">
+          <button onClick={filterTutors} className="text-white bg-emerald-500 dark:bg-emerald-600">
             Apply
           </button>
           <button
             onClick={() => setBar(false)}
-            className="text-neutral-500 bg-neutral-200"
+            className="text-neutral-500 bg-neutral-200 dark:bg-slate-800 dark:text-white"
           >
             Cancel
           </button>
