@@ -5,8 +5,10 @@ import { useContext } from "react";
 import { authContext } from "../../../state/authState";
 import blankPfp from "../../../assets/blank-profile-picture-hd-images-photo-1.jpeg";
 import { HiOutlineMoon } from "react-icons/hi";
+import { useTheme } from "../../../hooks/useTheme";
 
 const DtNav = () => {
+  const {changeTheme} = useTheme()
   const location = useLocation();
   const auth = useContext(authContext);
   if (!auth) {
@@ -16,7 +18,7 @@ const DtNav = () => {
   const dropContent: string[] = ["All", "Online", "Home"];
   const dropdowns: string[] = ["tutors"];
   return (
-    <div className="py-2 bg-white px-4 flex items-center justify-between fixed top-0 left-0 right-0 z-[899] *:z-[899]">
+    <div className="py-2 bg-white dark:bg-black px-4 flex items-center justify-between fixed top-0 left-0 right-0 z-[899] *:z-[899]">
       <div className="flex *:transition duration-300 items-center gap-4">
         <Link className="px-4" to="/home">
           <img className="w-[25px]" src={tutorme} alt="" />
@@ -67,7 +69,7 @@ const DtNav = () => {
               Log In
             </Link>
           )}
-          <button className="rounded-full hover:bg-neutral-200 active:bg-neutral-300/70 transition duration-200 p-1 cursor-pointer">
+          <button onClick={changeTheme} className="rounded-full hover:bg-neutral-200 active:bg-neutral-300/70 transition duration-200 p-1 cursor-pointer">
             <HiOutlineMoon color="#606060" size={28} />
           </button>
         </div>
