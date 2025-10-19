@@ -18,7 +18,7 @@ const DtNav = () => {
   const dropContent: string[] = ["All", "Online", "Home"];
   const dropdowns: string[] = ["tutors"];
   return (
-    <div className="py-2 bg-white dark:bg-gray-950 dark:text-white transition duration-150 px-4 flex items-center justify-between fixed top-0 left-0 right-0 z-[899] *:z-[899]">
+    <div className="py-2 bg-white dark:bg-slate-950 dark:text-white transition duration-150 px-4 flex items-center justify-between fixed top-0 left-0 right-0 z-[899] *:z-[899]">
       <div className="flex *:transition duration-300 items-center gap-4">
         <Link className="px-4" to="/home">
           <img className="w-[25px]" src={tutorme} alt="" />
@@ -69,7 +69,7 @@ const DtNav = () => {
               Log In
             </Link>
           )}
-          <button onClick={changeTheme} className="rounded-full hover:bg-neutral-100 dark:hover:bg-gray-900 active:bg-neutral-300/70 dark:active:bg-gray-800/70 transition duration-200 p-1 cursor-pointer">
+          <button onClick={changeTheme} className="rounded-full hover:bg-neutral-100 dark:hover:bg-slate-900 active:bg-neutral-300/70 dark:active:bg-slate-800/70 transition duration-200 p-1 cursor-pointer">
             { theme==="dark" ? <HiOutlineMoon color="#4B5563" size={28} /> : <HiOutlineSun color="#606060" size={28} />}
           </button>
         </div>
