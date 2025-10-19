@@ -17,6 +17,10 @@
     --shadow-blue: 0 0 5px 5px #3b82f620;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
 /*For markdown support*/
 
 h1 {
