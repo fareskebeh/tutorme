@@ -58,10 +58,10 @@ const PwReset = () => {
   return (
     <div className="pt-20 h-[100dvh] flex gap-8 flex-col sm:flex-row items-center justify-center px-8">
       <div className="space-y-4">
-        <p className="text-4xl sm:text-5xl font-bold md:text-6xl">
+        <p className="text-4xl sm:text-5xl font-bold dark:text-white md:text-6xl">
           Change Password
         </p>
-        <p className="text-xl px-2 sm:text-2xl">
+        <p className="text-xl px-2 dark:text-slate-500 sm:text-2xl">
           Pick a password that is strong, and you could remember easily
         </p>
       </div>
@@ -76,7 +76,7 @@ const PwReset = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewPw({ ...newPw, first: e.target.value })
             }
-            className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
+            className="p-3 text-2xl dark:text-white bg-neutral-100 dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600 caret-emerald-500 outline-none transition duration-150 border w-full rounded-xl border-b-2 border-neutral-300"
             type={pwVis ? "text" : "password"}
             placeholder="Password"
             name=""
@@ -84,7 +84,7 @@ const PwReset = () => {
           <button
             onClick={() => setPwVis(!pwVis)}
             className={`transition duration-200 cursor-pointer absolute right-5 top-4.5 ${
-              pwVis ? "text-black" : "text-neutral-400"
+              pwVis ? "text-black dark:text-white" : "text-neutral-400 dark:text-slate-500"
             }`}
             type="button"
           >
@@ -98,7 +98,7 @@ const PwReset = () => {
             setNewPw({ ...newPw, second: e.target.value })
           }
           placeholder="Confirm New Password"
-          className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border rounded-xl border-b-2 border-neutral-300"
+          className="p-3 text-2xl dark:text-white bg-neutral-100 caret-emerald-500 outline-none border dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600 rounded-xl border-b-2 transition duration-150 border-neutral-300"
         />
 
         <button

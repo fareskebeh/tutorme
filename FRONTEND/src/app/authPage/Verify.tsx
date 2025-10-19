@@ -29,10 +29,10 @@ const Verify = () => {
       <img className="w-40 md:w-100 md:order-2" src={sent} />
 
       <div className="space-y-6 text-center flex flex-col items-center md:items-start sm:text-left">
-        <p className="font-bold text-4xl sm:text-5xl md:text-6xl">
+        <p className="font-bold text-4xl dark:text-white sm:text-5xl md:text-6xl">
           Verify your email
         </p>
-        <p className="text-xl sm:text-2xl">
+        <p className="text-xl dark:text-slate-400 sm:text-2xl">
           We have successfully sent a confirmation email, please check your
           inbox!
         </p>

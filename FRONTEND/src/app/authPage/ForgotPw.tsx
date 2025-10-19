@@ -58,14 +58,14 @@ const ForgotPw = (props: Props) => {
   return (
     <div className="pt-20 flex justify-start items-center h-[100dvh] px-8">
       <div className="flex flex-col gap-6">
-        <p className="font-bold text-3xl sm:text-4xl md:text-5xl">
+        <p className="font-bold text-3xl sm:text-4xl dark:text-white md:text-5xl">
           Enter the code sent to your email
         </p>
-        <p className="text-xl sm:text-2xl">
-          We have sent a verification code to <strong>{props.guest}</strong> <br/>Enter it below to reset your
+        <p className="text-xl sm:text-2xl dark:text-slate-400">
+          We have sent a verification code to <strong className="dark:text-slate-100">{props.guest}</strong> <br/>Enter it below to reset your
           password
         </p>
-        <div className="flex *:font-bold *:text-center disabled:text-neutral-400 *:p-2 *:text-4xl *:bg-neutral-100 *:focus:border-emerald-400 *:transition duration-200 *:caret-emerald-500 *:outline-none *:border *:w-[25%] *:sm:w-[5%] *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2">
+        <div className="flex *:font-bold *:text-center *:dark:bg-slate-900 *:dark:border-slate-800 dark:text-white dark:disabled:text-slate-500 disabled:text-neutral-400 *:p-2 *:text-4xl *:bg-neutral-100 *:focus:border-emerald-400 *:transition duration-150 *:caret-emerald-500 *:outline-none *:border *:w-[25%] *:sm:w-[5%] *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2">
           {code?.map((_, index: number) => (
             <input
               inputMode="numeric"
@@ -82,7 +82,7 @@ const ForgotPw = (props: Props) => {
         </div>
        
 
-        <a className="text-neutral-400 text-xl">Didn't receive a code?</a>
+        <a className="text-neutral-400 text-xl dark:text-slate-500">Didn't receive a code?</a>
 
          {
           msg && <p className="flex gap-2 text-red-500 items-center"><HiExclamation/> {msg}</p>

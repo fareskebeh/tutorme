@@ -58,8 +58,8 @@ const Register = () => {
   return (
     <div className="pt-20 h-[100dvh] flex items-center gap-20 *:flex-1 justify-center px-8 sm:px-20 py-4">
       <form onSubmit={register} className="relative flex flex-col gap-2">
-        <p className="text-3xl font-black">Create a Tutorme account</p>
-        <p className="text-xl font-bold text-neutral-400">
+        <p className="text-3xl font-black dark:text-white">Create a Tutorme account</p>
+        <p className="text-xl dark:text-slate-500 font-bold text-neutral-400">
           Already a user?{" "}
           <Link className="text-emerald-500" to="/login">
             Log In
@@ -67,7 +67,7 @@ const Register = () => {
           here
         </p>
 
-        <div className="flex *:flex-1 *:p-3 *:text-2xl *:bg-neutral-100 *:caret-emerald-500 *:outline-none *:border *:w-full *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2" >
+        <div className="flex *:flex-1 *:p-3 *:text-2xl *:transition duration-150 *:bg-neutral-100 *:dark:text-white *:caret-emerald-500 *:outline-none *:border *:w-full *:rounded-xl *:border-b-2 *:border-neutral-300 gap-2 *:dark:bg-slate-900 *:dark:border-slate-800 *:dark:placeholder-slate-600" >
           <input placeholder="First Name" type="text" value={credentials.firstName} onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setCredentials({...credentials, firstName: e.target.value})}/>
           <input placeholder="Last Name" type="text"  value={credentials.lastName} onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setCredentials({...credentials, lastName: e.target.value})}/>
         </div>
@@ -77,7 +77,7 @@ const Register = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setCredentials({ ...credentials, email: e.target.value })
           }
-          className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300 invalid:border-red-500 invalid:caret-red-500 invalid:bg-red-100 invalid:text-red-700 transition duration-200"
+          className="p-3 text-2xl dark:bg-slate-900 dark:text-white dark:border-slate-800 dark:placeholder-slate-600 dark:invalid:border-red-500 dark:invalid:caret-red-500 dark:invalid:bg-red-950/60 dark:invalid:text-red-700 bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300 invalid:border-red-500 invalid:caret-red-500 invalid:bg-red-100 invalid:text-red-700 transition duration-150"
           type="email"
           placeholder="Email"
           name=""
@@ -88,7 +88,7 @@ const Register = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCredentials({ ...credentials, firstPassword: e.target.value })
             }
-            className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
+            className="dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600 dark:text-white p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full transition duration-150 rounded-xl border-b-2 border-neutral-300"
             type={pwVis ? "text" : "password"}
             placeholder="Password"
             name=""
@@ -96,7 +96,7 @@ const Register = () => {
           <button
             onClick={() => setPwVis(!pwVis)}
             className={`transition duration-200 cursor-pointer absolute right-5 top-4.5 ${
-              pwVis ? "text-black" : "text-neutral-400"
+              pwVis ? "text-black dark:text-white" : "text-neutral-400 dark:text-slate-500"
             }`}
             type="button"
           >
@@ -108,25 +108,25 @@ const Register = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setCredentials({ ...credentials, secondPassword: e.target.value })
           }
-          className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
+          className="p-3 text-2xl bg-neutral-100 dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600 caret-emerald-500 outline-none border w-full dark:text-white rounded-xl border-b-2 transition duration-150 border-neutral-300"
           type={pwVis ? "text" : "password"}
           placeholder="Confirm Password"
           name=""
         />
 
         <div className="flex gap-2">
-          <p className="text-lg text-neutral-500">Remember me?</p>
+          <p className="text-lg text-neutral-500 dark:text-slate-500">Remember me?</p>
           <div className="relative">
             <input className="hidden peer" type="checkbox" id="remember" />
             <label
-              className="peer-checked:bg-emerald-500 cursor-pointer before:transition before:duration-300 peer-checked:before:translate-x-6 transition duration-300 absolute inset-0 w-12 before:content-[''] before:absolute before:h-4 before:bg-white before:w-4 pl-1 before:top-1/2 before:-translate-y-1/2 before:rounded-full bg-neutral-300 rounded-2xl"
+              className="peer-checked:bg-emerald-500 dark:peer-checked:bg-emerald-600 dark:bg-slate-800 cursor-pointer before:transition before:duration-300 peer-checked:before:translate-x-6 transition duration-300 absolute inset-0 w-12 before:content-[''] before:absolute before:h-4 before:bg-white before:w-4 pl-1 before:top-1/2 before:-translate-y-1/2 before:rounded-full bg-neutral-300 rounded-2xl"
               htmlFor="remember"
             />
           </div>
         </div>
         <button 
           disabled={loading}
-          className={`p-4 ${loading ? "bg-emerald-700" : "bg-emerald-400"} cursor-pointer flex justify-center items-center shadow-md text-2xl font-bold rounded-xl text-white active:opacity-80 transition duration-200`}
+          className={`p-4 ${loading ? "bg-emerald-700" : "bg-emerald-500 dark:bg-emerald-600"} cursor-pointer flex justify-center items-center shadow-md text-2xl font-bold rounded-xl text-white active:opacity-80 transition duration-200`}
           type="submit"
         >
           {loading ? <div className="loader my-2"></div> : "Create my account"}

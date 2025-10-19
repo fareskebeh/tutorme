@@ -50,8 +50,8 @@ const Login = (props: Props) => {
   return (
     <div className="pt-20 h-[100dvh] flex items-center gap-20 *:flex-1 justify-center px-8 sm:px-20 py-4">
       <form onSubmit={login} className="flex relative flex-col gap-2">
-        <p className="text-3xl font-black">Log into your Tutorme account</p>
-        <p className="text-xl font-bold text-neutral-400">
+        <p className="text-3xl dark:text-white font-black">Log into your Tutorme account</p>
+        <p className="text-xl font-bold text-neutral-400 dark:text-slate-500">
           New user?{" "}
           <Link className="text-emerald-500" to="/register">
             Register
@@ -64,7 +64,7 @@ const Login = (props: Props) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setCredentials({ ...credentials, email: e.target.value })
           }
-          className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300 invalid:border-red-500 invalid:caret-red-500 invalid:bg-red-100 invalid:text-red-700 transition duration-200"
+          className="p-3 text-2xl bg-neutral-100 dark:text-white  caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300 dark:invalid:border-red-500 dark:invalid:caret-red-500 dark:invalid:bg-red-950/60 dark:invalid:text-red-700 invalid:border-red-500 invalid:caret-red-500 invalid:bg-red-100 invalid:text-red-700  transition duration-150 dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600"
           type="email"
           placeholder="Email"
           name=""
@@ -75,15 +75,15 @@ const Login = (props: Props) => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCredentials({ ...credentials, password: e.target.value })
             }
-            className="p-3 text-2xl bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
+            className="transition duration-150 p-3 text-2xl dark:text-white bg-neutral-100 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300 dark:bg-slate-900 dark:border-slate-800 dark:placeholder-slate-600"
             type={pwVis ? "text" : "password"}
             placeholder="Password"
             name=""
           />
           <button
             onClick={() => setPwVis(!pwVis)}
-            className={`transition duration-200 cursor-pointer absolute right-5 top-4.5 ${
-              pwVis ? "text-black" : "text-neutral-400"
+            className={`transition duration-200 cursor-pointer  absolute right-5 top-4.5 ${
+              pwVis ? "text-black dark:text-white" : "text-neutral-400 dark:text-slate-500"
             }`}
             type="button"
           >
@@ -91,23 +91,23 @@ const Login = (props: Props) => {
           </button>
         </div>
         <div className="flex gap-2">
-          <p className="text-lg text-neutral-500">Remember me?</p>
+          <p className="text-lg text-neutral-500 dark:text-slate-500">Remember me?</p>
           <div className="relative">
             <input className="hidden peer" type="checkbox" id="remember" />
             <label
-              className="peer-checked:bg-emerald-500 cursor-pointer before:transition before:duration-300 peer-checked:before:translate-x-6 transition duration-300 absolute inset-0 w-12 before:content-[''] before:absolute before:h-4 before:bg-white before:w-4 pl-1 before:top-1/2 before:-translate-y-1/2 before:rounded-full bg-neutral-300 rounded-2xl"
+              className="peer-checked:bg-emerald-500 dark:bg-slate-800 dark:peer-checked:bg-emerald-600 cursor-pointer before:transition before:duration-150 peer-checked:before:translate-x-6 transition duration-300 absolute inset-0 w-12 before:content-[''] before:absolute before:h-4 before:bg-white before:w-4 pl-1 before:top-1/2 before:-translate-y-1/2 before:rounded-full bg-neutral-300 rounded-2xl"
               htmlFor="remember"
             />
           </div>
         </div>
         <button
           disabled={loading}
-          className={`p-4 ${loading ? "bg-emerald-700" : "bg-emerald-400"} flex justify-center items-center shadow-md text-2xl font-bold rounded-xl text-white active:opacity-80 transition duration-200 cursor-pointer`}
+          className={`p-4 ${loading ? "bg-emerald-700" : "bg-emerald-500 dark:bg-emerald-600"} flex justify-center items-center shadow-md text-2xl font-bold rounded-xl text-white active:opacity-80 transition duration-200 cursor-pointer`}
           type="submit"
         >
           {loading ? <div className="loader my-2"></div> : "Log In"}
         </button>
-        <p onClick={forgotPass} className="text-lg cursor-pointer text-neutral-500">
+        <p onClick={forgotPass} className="text-lg dark:text-slate-500 cursor-pointer text-neutral-500">
           Forgot Password?
         </p>
         <AnimatePresence>
