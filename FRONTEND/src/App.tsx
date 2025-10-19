@@ -41,18 +41,18 @@ const TSettings = lazy(() => import("./app/tutorDash/TSettings"));
 const Earnings = lazy(() => import("./app/tutorDash/Earnings"));
 
 import { authContext } from "./state/authState";
-import { themeContext } from "./state/Theme";
 import TutorsList from "./app/tutors/TutorsList";
 import TutorsLayout from "./app/tutors/TutorsLayout";
 
+
+type User = {
+  username: string;
+  pfp: string;
+};
+
 const App = () => {
-  type User = {
-    username: string;
-    pfp: string;
-  };
 
   const [vp, setVp] = useState<string>("");
-  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const adjVp = () => {
@@ -68,31 +68,11 @@ const App = () => {
   const [guest, setGuest] = useState<string>("");
   const [user, setUser] = useState<User | null>(null);
 
-  const toggleTheme = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    }
-    if (theme === "light") {
-      setTheme("dark");
-    }
-  };
-
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const currTheme: "light" | "dark" = stored === "light" ? "light" : "dark";
-    setTheme(currTheme);
-  }, []);
-
-  useEffect(()=> {
-    localStorage.setItem("theme",theme)
-  },[theme])
-
   return (
     <authContext.Provider value={{ user, setUser }}>
-      <themeContext.Provider value={{ theme }}>
         <Router>
           {/* Navigation */}
-          <Nav toggleTheme={toggleTheme} vp={vp} />
+          <Nav vp={vp} />
 
           <Suspense fallback={<Loading />}>
             <Routes>
@@ -268,7 +248,6 @@ const App = () => {
             </Routes>
           </Suspense>
         </Router>
-      </themeContext.Provider>
     </authContext.Provider>
   );
 };
