@@ -32,7 +32,7 @@ const MbDropdown = ({ label, dropContent, setBar }: Props) => {
     <div
       ref={menuRef}
       onClick={() => setOpen(!open)}
-      className={` p-2 rounded-lg active:bg-neutral-200/50 transition duration-300 relative items-center text-lg flex justify-between`}
+      className={` p-2 rounded-lg dark:active:bg-slate-800 active:bg-neutral-200/50 transition duration-150 relative items-center text-lg flex justify-between`}
     >
       <p>{label === "tutors" ? "Find a Tutor" : label==="jobs" ? "Find Tutor jobs" : ""}</p>
 
@@ -49,7 +49,7 @@ const MbDropdown = ({ label, dropContent, setBar }: Props) => {
                 exit={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className="flex flex-col absolute z-60 p-2 w-full *:p-2 bg-white top-10 border rounded-xl border-neutral-400/70"
+                className="flex flex-col absolute z-60 p-2 w-full *:p-2 bg-white dark:bg-slate-800 dark:border-slate-700 top-14 border rounded-xl border-neutral-400/70"
               >
                 { 
                 dropContent.map((drop, index) => (

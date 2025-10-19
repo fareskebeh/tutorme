@@ -27,7 +27,7 @@ const DtDropdown = ({label,dropContent}: Props) => {
   },[])
 
   return (
-    <div ref={menuRef} onClick={()=>setOpen(!open)} className={`*:cursor-pointer p-2  rounded-lg hover:bg-neutral-100/50 active:bg-neutral-200/50 transition duration-300 relative items-center flex gap-2`}>
+    <div ref={menuRef} onClick={()=>setOpen(!open)} className={`*:cursor-pointer p-2  rounded-lg hover:bg-neutral-100/50 dark:hover:bg-slate-900 active:bg-neutral-200/50 transition duration-300 relative items-center flex gap-2`}>
       <p>{label==="tutors" ? "Find a Tutor" : "Find Tutor jobs" }</p>
       <button className={`transition duration-300 ${open? "-rotate-180" : ""}`}>
         <HiChevronDown/>
@@ -35,11 +35,11 @@ const DtDropdown = ({label,dropContent}: Props) => {
       
       <AnimatePresence>
       { open &&
-      <motion.div initial={{opacity:0, y:-20}} exit={{opacity:0, y:-20}} animate={{opacity:1, y:0}} transition={{duration:0.2}} className='flex z-[999] flex-col gap-1 absolute p-2 w-full *:p-2 bg-white top-10 border rounded-xl border-neutral-400/40'>
+      <motion.div initial={{opacity:0, y:-20}} exit={{opacity:0, y:-20}} animate={{opacity:1, y:0}} transition={{duration:0.2}} className='flex z-[999] flex-col gap-1 absolute p-2 w-full *:p-2 bg-white top-10 border rounded-xl border-neutral-400/40 dark:bg-slate-900 dark:border-slate-800'>
         {
           dropContent.map((drop,index)=> (
-            <Link onClick={()=>setOpen(false)} className={`cursor-pointer rounded-lg ${
-              pathname === `/${label}` && search=== `?availabilityLocation=${drop.toLowerCase()}` ? "bg-emerald-500 text-white" : "hover:bg-neutral-100 transition duration-200"}`} to={`${label==="tutors" ? "/tutors" : "/jobs"}?availabilityLocation=${drop.toLowerCase()}`} key={index}>{drop}</Link>
+            <Link onClick={()=>setOpen(false)} className={`cursor-pointer  dark:text-white rounded-lg ${
+              pathname === `/${label}` && search=== `?availabilityLocation=${drop.toLowerCase()}` ? "bg-emerald-500 text-white" : "dark:hover:bg-slate-800 hover:bg-neutral-100 transition duration-200"}`} to={`${label==="tutors" ? "/tutors" : "/jobs"}?availabilityLocation=${drop.toLowerCase()}`} key={index}>{drop}</Link>
           ))
         }
       </motion.div>

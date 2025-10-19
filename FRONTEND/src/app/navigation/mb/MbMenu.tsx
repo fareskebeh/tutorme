@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import MbDropdown from "./MbDropdown";
 import { authContext } from "../../../state/authState";
 import blankPfp from "../../../assets/blank-profile-picture-hd-images-photo-1.jpeg"
+import { useTheme } from "../../../hooks/useTheme";
 
 const MbMenu = () => {
+  const {theme,changeTheme} = useTheme()
   const auth = useContext(authContext)
   if(!auth) {
     throw new Error("authContext is undefined")
@@ -36,7 +38,7 @@ const MbMenu = () => {
       <div
         className={`${
           bar ? "" : "translate-x-full"
-        } w-[60%] p-4 shadow-lg flex flex-col justify-between transition duration-200 z-90 fixed top-0 bg-white right-0 bottom-0`}
+        } w-[60%] p-4 dark:bg-slate-900 shadow-lg flex flex-col justify-between transition duration-150 z-90 fixed top-0 bg-white right-0 bottom-0`}
       >
         {/*Header*/}
         <div className="flex justify-between">
@@ -73,7 +75,9 @@ const MbMenu = () => {
         <div>
           <div className="flex py-4 gap-2">
             <div className="flex gap-2 items-center">
-            <HiOutlineMoon size={25} />
+            <div className="text-neutral-600 dark:text-slate-500">
+              <HiOutlineMoon size={25} />
+            </div>
             <p>Dark Theme</p>
             </div>
             <div className="relative ml-10">
@@ -81,12 +85,14 @@ const MbMenu = () => {
                 className="hidden peer"
                 type="checkbox"
                 id="theme"
+                checked={theme==="dark"}
+                onChange={changeTheme}
               />
-              <label className="peer-checked:bg-emerald-500 before:transition before:duration-300 peer-checked:before:translate-x-4 transition duration-300 absolute top-0 bottom-0 left-0 right-0 w-10 before:content-[''] before:absolute before:h-4 before:bg-white before:w-4 pl-1 before:top-1/2 before:-translate-y-1/2 before:rounded-full bg-neutral-400 rounded-xl" htmlFor="theme"/>
+              <label className="peer-checked:bg-emerald-500 dark:bg-slate-700 peer-checked:dark:bg-emerald-500 before:transition before:duration-300 peer-checked:before:translate-x-4 transition duration-300 absolute top-0 bottom-0 left-0 right-0 w-10 before:content-[''] before:absolute before:h-4 before:bg-white before:w-4 pl-1 before:top-1/2 before:-translate-y-1/2 before:rounded-full bg-neutral-400 rounded-xl" htmlFor="theme"/>
             </div>
           </div>
 
-          <hr className="border-neutral-500/40"/>
+          <hr className="border-neutral-500/40 dark:border-slate-700/40"/>
 
           {
             user? 
