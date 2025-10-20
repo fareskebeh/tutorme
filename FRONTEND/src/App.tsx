@@ -79,182 +79,52 @@ const App = () => {
   return (
     <authContext.Provider value={{ user, setUser }}>
         <Router>
-          {/* Navigation */}
           <Nav vp={vp} />
 
-          <Suspense fallback={<Loading />}>
-            <Routes>
-              {/* General */}
-              <Route path="/home" element={<Home />} />
-              <Route path="/" element={<Navigate to="/home" />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/faq" element={<Faq />} />
+          <Routes>
+            <Route path="/home" element={<Suspense fallback={<Loading />}><Home /></Suspense>} />
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/about" element={<Suspense fallback={<Loading />}><About /></Suspense>} />
+            <Route path="/faq" element={<Suspense fallback={<Loading />}><Faq /></Suspense>} />
 
-              {/* Tutors */}
-              <Route path="/tutors" element={<TutorsLayout vp={vp} />}>
-                <Route index element={<TutorsList />} />
-                <Route path="id/:id" element={<TutorPreview />} />
-                {/* Actions */}
-                <Route path="book/:id" />
-                <Route path="chat/:id" />
+            <Route path="/tutors" element={<Suspense fallback={<Loading />}><TutorsLayout vp={vp} /></Suspense>}>
+              <Route index element={<Suspense fallback={<Loading />}><TutorsList /></Suspense>} />
+              <Route path="id/:id" element={<Suspense fallback={<Loading />}><TutorPreview /></Suspense>} />
+              <Route path="book/:id" />
+              <Route path="chat/:id" />
+            </Route>
 
-                {/*<Route path="filter" element={<TutorFilter/>}/>*/}
-              </Route>
+            <Route path="/jobs" element={<Suspense fallback={<Loading />}><Jobs /></Suspense>}>
+              <Route path=":id" element={<Suspense fallback={<Loading />}><JobPreview /></Suspense>} />
+              <Route path="apply/:id" element={<Suspense fallback={<Loading />}><JobApplication /></Suspense>} />
+              <Route path=":method" element={<Suspense fallback={<Loading />}><FilterJobs /></Suspense>} />
+            </Route>
 
-              {/*jobs */}
-              <Route path="/jobs" element={<Jobs />}>
-                <Route path=":id" element={<JobPreview />} />
-                <Route path="apply/:id" element={<JobApplication />} />
-                <Route path=":method" element={<FilterJobs />} />
-              </Route>
+            <Route path="/register" element={<Suspense fallback={<Loading />}><Public><Register /></Public></Suspense>} />
+            <Route path="/login" element={<Suspense fallback={<Loading />}><Public><Login setGuest={setGuest} /></Public></Suspense>} />
+            <Route path="/forgot-password" element={guest === "" ? <Navigate to="*" replace /> : <Suspense fallback={<Loading />}><Public><ForgotPw guest={guest} /></Public></Suspense>} />
+            <Route path="/verify" element={<Suspense fallback={<Loading />}><Verify /></Suspense>} />
+            <Route path="/reset-password" element={<Suspense fallback={<Loading />}><PwReset /></Suspense>} />
 
-              {/* auth */}
-              <Route
-                path="/register"
-                element={
-                  <Public>
-                    <Register />
-                  </Public>
-                }
-              />
-              <Route
-                path="/login"
-                element={
-                  <Public>
-                    <Login setGuest={setGuest} />
-                  </Public>
-                }
-              />
-              <Route
-                path="/forgot-password"
-                element={
-                  guest === "" ? (
-                    <Navigate to="*" replace />
-                  ) : (
-                    <Public>
-                      <ForgotPw guest={guest} />
-                    </Public>
-                  )
-                }
-              />
-              <Route path="/verify" element={<Verify />} />
-              <Route path="/reset-password" element={<PwReset />} />
+            <Route path="/dashboard" element={<Suspense fallback={<Loading />}><Protected><Dashboard /></Protected></Suspense>}>
+              <Route path="requests" element={<Suspense fallback={<Loading />}><Protected><Requests /></Protected></Suspense>} />
+              <Route path="hire-history" element={<Suspense fallback={<Loading />}><Protected><HireHistory /></Protected></Suspense>} />
+              <Route path="favorites" element={<Suspense fallback={<Loading />}><Protected><Favorites /></Protected></Suspense>} />
+              <Route path="messages" element={<Suspense fallback={<Loading />}><Protected><Messages /></Protected></Suspense>} />
+              <Route path="settings" element={<Suspense fallback={<Loading />}><Protected><Settings /></Protected></Suspense>} />
+            </Route>
 
-              {/* student dashboard */}
-              <Route
-                path="/dashboard"
-                element={
-                  <Protected>
-                    <Dashboard />
-                  </Protected>
-                }
-              >
-                <Route
-                  path="requests"
-                  element={
-                    <Protected>
-                      <Requests />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="hire-history"
-                  element={
-                    <Protected>
-                      <HireHistory />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="favorites"
-                  element={
-                    <Protected>
-                      <Favorites />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="messages"
-                  element={
-                    <Protected>
-                      <Messages />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="settings"
-                  element={
-                    <Protected>
-                      {" "}
-                      <Settings />
-                    </Protected>
-                  }
-                />
-              </Route>
+            <Route path="/tutor-panel" element={<Suspense fallback={<Loading />}><Protected><Panel /></Protected></Suspense>}>
+              <Route path="profile" element={<Suspense fallback={<Loading />}><Protected><Profile /></Protected></Suspense>} />
+              <Route path="applications" element={<Suspense fallback={<Loading />}><Protected><Applications /></Protected></Suspense>} />
+              <Route path="my-students" element={<Suspense fallback={<Loading />}><Protected><Students /></Protected></Suspense>} />
+              <Route path="messages" element={<Suspense fallback={<Loading />}><Protected><Messages /></Protected></Suspense>} />
+              <Route path="earnings" element={<Suspense fallback={<Loading />}><Protected><Earnings /></Protected></Suspense>} />
+              <Route path="settings" element={<Suspense fallback={<Loading />}><Protected><TSettings /></Protected></Suspense>} />
+            </Route>
 
-              {/* tutor dashboard */}
-              <Route
-                path="/tutor-panel"
-                element={
-                  <Protected>
-                    <Panel />
-                  </Protected>
-                }
-              >
-                <Route
-                  path="profile"
-                  element={
-                    <Protected>
-                      <Profile />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="applications"
-                  element={
-                    <Protected>
-                      <Applications />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="my-students"
-                  element={
-                    <Protected>
-                      <Students />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="messages"
-                  element={
-                    <Protected>
-                      <Messages />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="earnings"
-                  element={
-                    <Protected>
-                      <Earnings />
-                    </Protected>
-                  }
-                />
-                <Route
-                  path="settings"
-                  element={
-                    <Protected>
-                      <TSettings />
-                    </Protected>
-                  }
-                />
-              </Route>
-
-              {/* catch-all */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+            <Route path="*" element={<Suspense fallback={<Loading />}><NotFound /></Suspense>} />
+          </Routes>
         </Router>
     </authContext.Provider>
   );
