@@ -46,7 +46,7 @@ const MbSearch = (props: Props) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="bg-black/20 flex items-center justify-center fixed inset-0 z-[899]"
+      className="bg-black/70 flex items-center justify-center fixed inset-0 z-[899]"
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
@@ -54,25 +54,25 @@ const MbSearch = (props: Props) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.15 }}
-        className="p-4 bg-white h-[60%] flex flex-col justify-between shadow-md rounded-2xl w-[90%]"
+        className="p-4 dark:bg-slate-950 bg-white flex flex-col justify-between shadow-md rounded-2xl w-[90%]"
       >
         <div className="pb-4 pr-2">
           <HiX
             onClick={() => props.setSOpen(false)}
             size={24}
-            className="float-right active:bg-neutral-100 rounded-full"
+            className="float-right active:bg-neutral-100 dark:active:bg-slate-800 dark:text-slate-800 rounded-full"
           />
         </div>
 
         <div className="flex *:caret-emerald-400 flex-col gap-2 w-full">
           <div className="relative w-full">
-            <HiOutlineBookOpen className="absolute text-neutral-500 top-3.5 left-2.5" />
+            <HiOutlineBookOpen className="absolute text-neutral-500 dark:text-slate-600 top-3.5 left-2.5" />
             <input
               value={query.subject}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setQuery({ ...query, subject: e.target.value })
               }
-              className="p-2 text-xl pl-8 bg-neutral-200/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
+              className="p-2 dark:text-white dark:bg-slate-900 dark:placeholder-slate-600 transition duration-150 dark:border-slate-800 text-xl pl-8 bg-neutral-200/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
               placeholder="Enter Subject"
               type="text"
             />
@@ -80,20 +80,20 @@ const MbSearch = (props: Props) => {
             {query.subject && (
               <HiX
                 onClick={() => setQuery({ ...query, subject: "" })}
-                className="absolute right-3 text-neutral-400 top-2.5"
+                className="absolute right-3 text-neutral-400 dark:text-slate-600 top-2.5"
                 size={25}
               />
             )}
           </div>
           <div className="relative w-full">
-            <HiOutlineLocationMarker className="absolute text-neutral-500 top-3.5 left-2.5" />
+            <HiOutlineLocationMarker className="absolute text-neutral-500 top-3.5 dark:text-slate-600 left-2.5" />
 
             <input
               value={query.location}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setQuery({ ...query, location: e.target.value })
               }
-              className="p-2 pl-8 text-xl bg-neutral-200/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
+              className="p-2 dark:text-white dark:bg-slate-900 dark:placeholder-slate-600 transition duration-150 dark:border-slate-800 pl-8 text-xl bg-neutral-200/50 caret-emerald-500 outline-none border w-full rounded-xl border-b-2 border-neutral-300"
               placeholder="Enter Location"
               type="text"
             />
@@ -101,19 +101,19 @@ const MbSearch = (props: Props) => {
             {query.location && (
               <HiX
                 onClick={() => setQuery({ ...query, location: "" })}
-                className="absolute right-3 text-neutral-400 top-2.5"
+                className="absolute right-3 text-neutral-400 dark:text-slate-600 top-2.5"
                 size={25}
               />
             )}
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col text-xl text-center *:select-none gap-4 justify-center items-center">
+        <div className="flex flex-1 flex-col text-xl text-center *:select-none dark:*:text-slate-600 py-4 gap-4 justify-center items-center">
           <HiSearch size={50} />
           <p className="w-[70%]">Enter keywords to start searching</p>
         </div>
 
-        <button onClick={()=> search()} className="p-3 text-xl text-white font-bold bg-emerald-500 active:opacity-80 transition duration-150 rounded-xl">
+        <button onClick={()=> search()} className="p-3 dark:bg-emerald-600 text-xl text-white font-bold bg-emerald-500 active:opacity-80 transition duration-150 rounded-xl">
           Search
         </button>
       </motion.div>
