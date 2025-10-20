@@ -22,7 +22,7 @@ const Rating = (props: Props) => {
         .map((_, i) => (
           <HiStar
             key={`empty-${i}`}
-            className="text-amber-100 size-6 sm:size-7 md:size-8"
+            className="text-amber-100 dark:text-amber-900 transition duration-150 size-6 sm:size-7 md:size-8"
           />
         ))}
 

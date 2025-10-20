@@ -98,7 +98,7 @@ const TutorPreview = () => {
               />
 
               <div className="*:flex *:items-center flex flex-col gap-2">
-                <div className="text-5xl font-bold dark:text-white sm:text-6xl md:text-7xl">
+                <div className="text-5xl *:transition duration-150 font-bold dark:text-white sm:text-6xl md:text-7xl">
                   <p>
                     {preview?.tutor?.firstName} {preview?.tutor?.lastName}
                   </p>
@@ -106,7 +106,7 @@ const TutorPreview = () => {
                 <div className="flex gap-2 flex-wrap">
                   {preview?.tutor?.tags?.map((t, i) => (
                     <p
-                      className="p-2 rounded-xl bg-neutral-100 dark:bg-slate-900 text-neutral-500 dark:text-slate-500"
+                      className="p-2 rounded-xl transition duration-150 bg-neutral-100 dark:bg-slate-900 text-neutral-500 dark:text-slate-500"
                       key={i}
                     >
                       {t}
@@ -132,7 +132,7 @@ const TutorPreview = () => {
                   <div className="flex items-center gap-1 dark:text-slate-400">
                     <HiOutlineClock /> {preview?.tutor?.availability}
                   </div>
-                  <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 dark:*:bg-slate-900 text-emerald-500">
+                  <div className="flex gap-2 *:p-2 *:transition duration-150 *:rounded-xl *:bg-emerald-50 dark:*:bg-slate-900 text-emerald-500">
                     {preview?.tutor?.locationAvailability.map((l, i) => (
                       <p key={i}>{l}</p>
                     ))}
@@ -140,7 +140,7 @@ const TutorPreview = () => {
                 </div>
               </div>
             )}
-            <div className="flex *:flex *:items-center *:gap-2 gap-2 *:rounded-xl *:p-2 *:px-3 *:text-xl">
+            <div className="flex *:flex *:items-center *:gap-2 gap-2 *:transition duration-150 *:rounded-xl *:p-2 *:px-3 *:text-xl">
               <button
                 onClick={() => performAction("book")}
                 className="bg-emerald-500 cursor-pointer dark:bg-emerald-600 shadow-md hover:opacity-90 active:opacity-80 transition duration-150 text-white"
