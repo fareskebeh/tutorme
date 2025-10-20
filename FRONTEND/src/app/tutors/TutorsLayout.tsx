@@ -33,7 +33,7 @@ const TutorsLayout = (props: Props) => {
         </div>
       ) : (
         <div className="shadow-md  dark:bg-slate-950 transition duration-150 w-full flex p-4 justify-between items-center">
-          <HiSearch className="active:bg-neutral-100 dark:text-white rounded-full" onClick={()=> setSOpen(true)} size={24} />
+          <HiSearch className="active:bg-neutral-100 dark:text-slate-600 rounded-full" onClick={()=> setSOpen(true)} size={24} />
           <Filters/>
         </div>
       )}

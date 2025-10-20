@@ -51,7 +51,7 @@ const TutorTile = (props: Tutor) => {
             draggable="false"
           />
           <div className="flex *:flex *:items-center *:gap-1 flex-col justify-center gap-1">
-            <div className="text-2xl sm:text-3xl md:text-4xl dark:text-white font-bold">
+            <div className="text-2xl sm:text-3xl md:text-4xl dark:text-white font-bold transition duration-150">
               {props.firstName} {props.lastName}
             </div>
             <div className="text-neutral-500 dark:text-slate-400 sm:text-lg md:text-xl">
@@ -65,7 +65,7 @@ const TutorTile = (props: Tutor) => {
         </div>
 
         {props.tags && (
-          <div className="flex flex-wrap *:p-2 *:dark:bg-slate-800 *:dark:text-slate-400 transition duration-150 *:text-neutral-600 *:bg-neutral-100 gap-2 *:rounded-xl">
+          <div className="flex flex-wrap *:p-2 *:dark:bg-slate-800 *:dark:text-slate-400 *:transition duration-150 *:text-neutral-600 *:bg-neutral-100 gap-2 *:rounded-xl">
             {props.tags?.map((tag, i) => (
               <div key={i}>{tag}</div>
             ))}
@@ -78,7 +78,7 @@ const TutorTile = (props: Tutor) => {
             <div className="flex items-center gap-1">
             <HiOutlineClock /> {props.availability}
             </div>
-            <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 dark:*:bg-slate-800 text-emerald-500">
+            <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 *:transition duration-150 dark:*:bg-slate-800 text-emerald-500">
               {props.locationAvailability.map((l, i) => (
                 <p key={i}>{l}</p>
               ))}
@@ -94,7 +94,7 @@ const TutorTile = (props: Tutor) => {
             <HiOutlineHeart onClick={favorite} className=" text-neutral-300 dark:text-slate-500 size-6 sm:size-7 md:size-8" />
           )}
         </button>
-        <Link to={`/tutors/id/${props.id}`} className="cursor-pointer font-bold text-xl p-2 rounded-xl active:opacity-80 hover:opacity-90 transition duration-150 bg-emerald-500 text-white text-nowrap">
+        <Link to={`/tutors/id/${props.id}`} className="cursor-pointer dark:bg-emerald-600 font-bold text-xl p-2 rounded-xl active:opacity-80 hover:opacity-90 transition duration-150 bg-emerald-500 text-white text-nowrap">
           Preview
         </Link>
       </div>
