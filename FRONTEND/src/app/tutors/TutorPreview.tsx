@@ -98,7 +98,7 @@ const TutorPreview = () => {
               />
 
               <div className="*:flex *:items-center flex flex-col gap-2">
-                <div className="text-5xl font-bold sm:text-6xl md:text-7xl">
+                <div className="text-5xl font-bold dark:text-white sm:text-6xl md:text-7xl">
                   <p>
                     {preview?.tutor?.firstName} {preview?.tutor?.lastName}
                   </p>
@@ -106,18 +106,18 @@ const TutorPreview = () => {
                 <div className="flex gap-2 flex-wrap">
                   {preview?.tutor?.tags?.map((t, i) => (
                     <p
-                      className="p-2 rounded-xl bg-neutral-100 text-neutral-500"
+                      className="p-2 rounded-xl bg-neutral-100 dark:bg-slate-900 text-neutral-500 dark:text-slate-500"
                       key={i}
                     >
                       {t}
                     </p>
                   ))}
                 </div>
-                <div className="text-neutral-500 gap-2 sm:text-xl md:text-2xl">
+                <div className="text-neutral-500 dark:text-slate-400 gap-2 sm:text-xl md:text-2xl">
                   <HiOutlineLocationMarker />
                   {preview?.tutor?.location}
                 </div>
-                <div className="text-neutral-500 gap-2 sm:text-xl md:text-2xl">
+                <div className="text-neutral-500 gap-2 sm:text-xl dark:text-slate-400 md:text-2xl">
                   <HiOutlineCurrencyDollar /> ${preview?.tutor?.rate}/hr
                 </div>
               </div>
@@ -129,10 +129,10 @@ const TutorPreview = () => {
                   reviewsCount={preview?.tutor?.reviewsCount}
                 />
                 <div className="flex flex-col sm:gap-8 sm:flex-row sm:items-center text-neutral-500 items-start gap-1">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 dark:text-slate-400">
                     <HiOutlineClock /> {preview?.tutor?.availability}
                   </div>
-                  <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 text-emerald-500">
+                  <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 dark:*:bg-slate-900 text-emerald-500">
                     {preview?.tutor?.locationAvailability.map((l, i) => (
                       <p key={i}>{l}</p>
                     ))}
@@ -143,13 +143,13 @@ const TutorPreview = () => {
             <div className="flex *:flex *:items-center *:gap-2 gap-2 *:rounded-xl *:p-2 *:px-3 *:text-xl">
               <button
                 onClick={() => performAction("book")}
-                className="bg-emerald-500 cursor-pointer shadow-md hover:opacity-90 active:opacity-80 transition duration-150 text-white"
+                className="bg-emerald-500 cursor-pointer dark:bg-emerald-600 shadow-md hover:opacity-90 active:opacity-80 transition duration-150 text-white"
               >
                 <HiOutlineClock /> Book
               </button>
               <button
                 onClick={() => performAction("chat")}
-                className="bg-neutral-100 shadow-md text-neutral-500 cursor-pointer hover:opacity-90 active:opacity-80 transition duration-150"
+                className="bg-neutral-100 dark:bg-slate-900 dark:text-slate-400 shadow-md text-neutral-500 cursor-pointer hover:opacity-90 active:opacity-80 transition duration-150"
               >
                 <HiOutlineChat /> Chat
               </button>
@@ -157,12 +157,12 @@ const TutorPreview = () => {
               {preview?.tutor?.isFavorite ? (
                 <button
                   onClick={() => performAction("favorite")}
-                  className="bg-emerald-100 shadow-md cursor-pointer hover:opacity-90 active:opacity-80 transition duration-150 text-emerald-500"
+                  className="bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-300  shadow-md cursor-pointer hover:opacity-90 active:opacity-80 transition duration-150 text-emerald-500"
                 >
                   <HiOutlineHeart /> Unfavorite
                 </button>
               ) : (
-                <button className="border shadow-md text-emerald-500 border-emerald-500 cursor-pointer hover:opacity-90 active:opacity-80 transition duration-150">
+                <button className="border dark:bg-slate-900 dark:border-transparent shadow-md text-emerald-500 border-emerald-500 cursor-pointer hover:opacity-90 active:opacity-80 transition duration-150">
                   <HiOutlineHeart /> Favorite
                 </button>
               )}
