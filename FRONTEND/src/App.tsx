@@ -41,6 +41,7 @@ const TSettings = lazy(() => import("./app/tutorDash/TSettings"));
 const Earnings = lazy(() => import("./app/tutorDash/Earnings"));
 const TutorsList = lazy(()=>import("./app/tutors/TutorsList"));
 const TutorsLayout = lazy(()=> import("./app/tutors/TutorsLayout"));
+const Footer = lazy(()=> import("./components/Footer"));
 
 import { authContext } from "./state/authState";
 import { useTheme } from "./hooks/useTheme";
@@ -140,6 +141,9 @@ const App = () => {
 
             <Route path="*" element={<Suspense fallback={<Loading />}><NotFound /></Suspense>} />
           </Routes>
+          <Suspense fallback={<Loading/>}>
+            <Footer/>
+          </Suspense>
         </Router>
     </authContext.Provider>
   );
