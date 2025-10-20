@@ -27,7 +27,7 @@ const TutorsLayout = (props: Props) => {
       </AnimatePresence>
       
       {props.vp === "wide" ? (
-        <div className="w-full  dark:bg-slate-950 transition duration-150 bg-white border-b border-neutral-100 z-[899] shadow-md p-4 flex justify-between items-center">
+        <div className="w-full  dark:bg-slate-950 transition duration-150 bg-white border-b dark:border-slate-900 border-neutral-100 z-[899] shadow-md p-4 flex justify-between items-center">
           <Search/>
           <Filters/>
         </div>
