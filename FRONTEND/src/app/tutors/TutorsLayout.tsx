@@ -27,13 +27,13 @@ const TutorsLayout = (props: Props) => {
       </AnimatePresence>
       
       {props.vp === "wide" ? (
-        <div className="w-full bg-white border-b border-neutral-100 z-[899] shadow-md p-4 flex justify-between items-center">
+        <div className="w-full  dark:bg-slate-950 transition duration-150 bg-white border-b border-neutral-100 z-[899] shadow-md p-4 flex justify-between items-center">
           <Search/>
           <Filters/>
         </div>
       ) : (
-        <div className="shadow-md w-full flex p-4 justify-between items-center">
-          <HiSearch className="active:bg-neutral-100 rounded-full" onClick={()=> setSOpen(true)} size={24} />
+        <div className="shadow-md  dark:bg-slate-950 transition duration-150 w-full flex p-4 justify-between items-center">
+          <HiSearch className="active:bg-neutral-100 dark:text-white rounded-full" onClick={()=> setSOpen(true)} size={24} />
           <Filters/>
         </div>
       )}
