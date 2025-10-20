@@ -39,10 +39,10 @@ const Panel = lazy(() => import("./app/tutorDash/Panel"));
 const Students = lazy(() => import("./app/tutorDash/Students"));
 const TSettings = lazy(() => import("./app/tutorDash/TSettings"));
 const Earnings = lazy(() => import("./app/tutorDash/Earnings"));
+const TutorsList = lazy(()=>import("./app/tutors/TutorsList"));
+const TutorsLayout = lazy(()=> import("./app/tutors/TutorsLayout"));
 
 import { authContext } from "./state/authState";
-import TutorsList from "./app/tutors/TutorsList";
-import TutorsLayout from "./app/tutors/TutorsLayout";
 import { useTheme } from "./hooks/useTheme";
 
 
@@ -54,9 +54,6 @@ type User = {
 const App = () => {
   const{theme} = useTheme()
   const [vp, setVp] = useState<string>("");
-  useEffect(()=> {
-    document.body.classList.add("transition", "duration-150");
-  },[])
   useEffect(()=> {
     if (theme==="light") {
       document.body.style.backgroundColor = "#fff"
