@@ -54,6 +54,21 @@ type User = {
 const App = () => {
   const{theme} = useTheme()
   const [vp, setVp] = useState<string>("");
+
+  
+  useEffect(()=> {
+    document.documentElement.classList.add("scrollbar")
+    if(theme==="light") {
+      document.documentElement.classList.remove("scrollbar-thumb-slate-700", "scrollbar-track-slate-950")
+      document.documentElement.classList.add("scrollbar-thumb-neutral-300","scrollbar-track-white")
+    }
+    else {
+      document.documentElement.classList.remove("scrollbar-thumb-neutral-300","scrollbar-track-white")
+      document.documentElement.classList.add("scrollbar-thumb-slate-700", "scrollbar-track-slate-950")
+    }
+
+  },[theme])
+
   useEffect(()=> {
     if (theme==="light") {
       document.body.style.backgroundColor = "#fff"
