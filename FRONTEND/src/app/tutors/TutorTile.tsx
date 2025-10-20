@@ -36,7 +36,7 @@ const TutorTile = (props: Tutor) => {
       initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex p-4 justify-between bg-white shadow-md border border-neutral-100 rounded-xl"
+      className="flex p-4 justify-between dark:bg-slate-900 transition duration-150 dark:border-slate-800 bg-white shadow-md border border-neutral-100 rounded-xl"
     >
       <AnimatePresence>
         {
@@ -51,21 +51,21 @@ const TutorTile = (props: Tutor) => {
             draggable="false"
           />
           <div className="flex *:flex *:items-center *:gap-1 flex-col justify-center gap-1">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold">
+            <div className="text-2xl sm:text-3xl md:text-4xl dark:text-white font-bold">
               {props.firstName} {props.lastName}
             </div>
-            <div className="text-neutral-500 sm:text-lg md:text-xl">
+            <div className="text-neutral-500 dark:text-slate-400 sm:text-lg md:text-xl">
               <HiOutlineLocationMarker />
               {props.location}
             </div>
-            <div className="text-neutral-500 sm:text-lg md:text-xl">
+            <div className="text-neutral-500 dark:text-slate-400 sm:text-lg md:text-xl">
               <HiOutlineCurrencyDollar /> {props.rate}/hr
             </div>
           </div>
         </div>
 
         {props.tags && (
-          <div className="flex flex-wrap *:p-2 *:text-neutral-600 *:bg-neutral-100 gap-2 *:rounded-xl">
+          <div className="flex flex-wrap *:p-2 *:dark:bg-slate-800 *:dark:text-slate-400 transition duration-150 *:text-neutral-600 *:bg-neutral-100 gap-2 *:rounded-xl">
             {props.tags?.map((tag, i) => (
               <div key={i}>{tag}</div>
             ))}
@@ -74,11 +74,11 @@ const TutorTile = (props: Tutor) => {
 
         <div className="flex flex-col gap-1 sm:gap-2">
           <Rating rating={props.rating}/>
-          <div className="flex flex-col sm:gap-8 sm:flex-row sm:items-center text-neutral-500 items-start gap-1">
+          <div className="flex flex-col sm:gap-8 sm:flex-row sm:items-center text-neutral-500 dark:text-slate-400 items-start gap-1">
             <div className="flex items-center gap-1">
             <HiOutlineClock /> {props.availability}
             </div>
-            <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 text-emerald-500">
+            <div className="flex gap-2 *:p-2 *:rounded-xl *:bg-emerald-50 dark:*:bg-slate-800 text-emerald-500">
               {props.locationAvailability.map((l, i) => (
                 <p key={i}>{l}</p>
               ))}
@@ -89,9 +89,9 @@ const TutorTile = (props: Tutor) => {
       <div className="flex-col flex items-end justify-between">
         <button className="cursor-pointer hover:scale-105 transition duration-150 active:scale-100">
           {props.isFavorite ? (
-            <HiHeart onClick={favorite} className="size-6 sm:size-7 md:size-8 text-emerald-500" />
+            <HiHeart onClick={favorite} className="size-6 sm:size-7  md:size-8 text-emerald-500" />
           ) : (
-            <HiOutlineHeart onClick={favorite} className=" text-neutral-300 size-6 sm:size-7 md:size-8" />
+            <HiOutlineHeart onClick={favorite} className=" text-neutral-300 dark:text-slate-500 size-6 sm:size-7 md:size-8" />
           )}
         </button>
         <Link to={`/tutors/id/${props.id}`} className="cursor-pointer font-bold text-xl p-2 rounded-xl active:opacity-80 hover:opacity-90 transition duration-150 bg-emerald-500 text-white text-nowrap">

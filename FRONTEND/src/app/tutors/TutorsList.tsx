@@ -61,7 +61,7 @@ const TutorsList = () => {
 
   return (
  
-    <div className={`p-2 flex bg-neutral-100 flex-col gap-2 ${results?.state==="ERROR" && "h-[80dvh] sm:h-[78dvh]"}`}>
+    <div className={`p-2 flex bg-neutral-100 flex-col gap-2 transition duration-150 dark:bg-slate-950 ${results?.state==="ERROR" && "h-[80dvh] sm:h-[78dvh]"}`}>
       { results?.state==="LOADING" ? <TutorsListLoader/> :
         results?.state==="ERROR" ? <TutorListError/> :
       (
